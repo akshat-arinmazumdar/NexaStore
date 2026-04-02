@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { uploadImage } from "@/lib/cloudinary";
@@ -31,3 +33,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
 }
+

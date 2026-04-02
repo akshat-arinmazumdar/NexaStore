@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { auth } from "@/auth"; // Assuming standard next-auth v5 setup or fallback to getting session
@@ -92,3 +94,4 @@ export async function POST(request: Request) {
     );
   }
 }
+
