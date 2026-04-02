@@ -1,0 +1,9 @@
+﻿Running Backend API Tests...
+GET /api/products: PASS
+GET /api/products?search=saas: PASS
+GET /api/products/featured: PASS
+GET /api/products/[id] slug: FAIL
+GET /api/orders (no auth): PASS
+
+Reviewing Database State directly:
+Users in DB: 3

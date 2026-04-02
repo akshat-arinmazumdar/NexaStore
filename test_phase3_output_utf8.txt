@@ -1,0 +1,33 @@
+
+Running 1 test using 1 worker
+
+  G��  1 [chromium] GǦ phase3.spec.ts:57:7 GǦ Phase 3 - Page Tests GǦ Home -> Shop -> Product Detail -> Cart -> Auth -> Dashboard -> Checkout (22.6s)
+
+
+  1) [chromium] GǦ phase3.spec.ts:57:7 GǦ Phase 3 - Page Tests GǦ Home -> Shop -> Product Detail -> Cart -> Auth -> Dashboard -> Checkout 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('button', { name: /complete purchase/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('button', { name: /complete purchase/i })[22m
+
+
+      345 |     await expectNoErrors("Checkout page load");
+      346 |     await expect(page.getByText(/order summary/i)).toBeVisible();
+    > 347 |     await expect(page.getByRole("button", { name: /complete purchase/i })).toBeVisible();
+          |                                                                            ^
+      348 |   });
+      349 | });
+      350 |
+        at D:\Project\NexaStore\phase3.spec.ts:347:76
+
+    Error Context: test-results\phase3-Phase-3---Page-Test-87b67-Auth---Dashboard---Checkout-chromium\error-context.md
+
+  1 failed
+    [chromium] GǦ phase3.spec.ts:57:7 GǦ Phase 3 - Page Tests GǦ Home -> Shop -> Product Detail -> Cart -> Auth -> Dashboard -> Checkout 
