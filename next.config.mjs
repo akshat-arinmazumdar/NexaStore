@@ -1,36 +1,11 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "i.pravatar.cc",
-      },
-      {
-        protocol: "https",
-        hostname: "api.qrserver.com",
-      },
-      {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-      },
-    ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
   experimental: {
-    serverActions: true,
-    serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs', '@auth/prisma-adapter'],
+    serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs']
   },
-};
-
-
-export default nextConfig;
+  images: {
+    domains: ['res.cloudinary.com']
+  }
+}
+export default nextConfig

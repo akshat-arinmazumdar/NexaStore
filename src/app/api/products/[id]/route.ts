@@ -1,37 +1,27 @@
-import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+export const dynamic = "force-dynamic"
+export const runtime = "nodejs"
 
-const prisma = new PrismaClient();
+import { NextRequest, NextResponse } from "next/server"
+import { prisma } from "@/lib/prisma"
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const idOrSlug = params.id;
-    
     const product = await prisma.product.findFirst({
       where: {
         OR: [
-          { id: idOrSlug },
-          { slug: idOrSlug }
+          { id: params.id },
+          { slug: params.id }
         ]
-      },
-    });
-
+      }
+    })
     if (!product) {
-      return NextResponse.json(
-        { error: "Product not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Product not found" }, { status: 404 })
     }
-
-    return NextResponse.json(product);
+    return NextResponse.json(product)
   } catch (error) {
-    console.error("Product API Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch product" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Server error" }, { status: 500 })
   }
 }
