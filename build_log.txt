@@ -1,0 +1,1020 @@
+﻿
+> nexastore@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.23
+  - Environments: .env
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+node.exe : 
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (:  
+  String) [], RemoteExc   
+ eption
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+Failed to compile.
+
+./src/app/(auth)/login/pag
+e.tsx
+19:18  Error: 
+'AnimatePresence' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+21:10  Error: 'cn' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+61:14  Error: 'err' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+212:28  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/app/(auth)/register/
+page.tsx
+13:3  Error: 
+'ShoppingBag' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+16:3  Error: 'Layout' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+17:3  Error: 'Zap' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+21:18  Error: 
+'AnimatePresence' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+23:10  Error: 'cn' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+56:19  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/(public)/cart/pa
+ge.tsx
+11:10  Error: 'cn' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+18:10  Error: 'isApplied' 
+is assigned a value but 
+never used.  @typescript-e
+slint/no-unused-vars
+18:21  Error: 
+'setIsApplied' is 
+assigned a value but 
+never used.  @typescript-e
+slint/no-unused-vars
+121:47  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/app/(public)/checkou
+t/page.tsx
+13:3  Error: 
+'ShoppingCart' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+18:10  Error: 'cn' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+97:35  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+120:25  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+139:34  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+141:19  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+192:25  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+
+./src/app/(public)/checkou
+t/success/page.tsx
+8:3  Error: 'ArrowRight' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+15:3  Error: 
+'ChevronRight' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+19:18  Error: 
+'AnimatePresence' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+28:40  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+43:50  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+128:55  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+132:45  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+177:29  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/app/(public)/custom-
+project/page.tsx
+187:17  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+363:73  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+466:32  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+
+./src/app/(public)/shop/pa
+ge.tsx
+9:10  Error: 'Category' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+24:44  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+32:41  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+37:16  Error: 'err' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+154:124  Error: `'` can 
+be escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/app/(public)/wishlis
+t/page.tsx
+16:3  Error: 'Zap' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+22:10  Error: 'cn' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+40:35  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/admin/layout.tsx
+38:64  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+52:25  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+110:19  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+
+./src/app/admin/orders/pag
+e.tsx
+5:45  Error: 'ArrowRight' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+9:40  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+16:6  Warning: React Hook 
+useEffect has a missing 
+dependency: 
+'fetchOrders'. Either 
+include it or remove the 
+dependency array.  react-h
+ooks/exhaustive-deps
+
+./src/app/admin/orders/[id
+]/page.tsx
+7:10  Error: 'motion' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+11:9  Error: 'router' is 
+assigned a value but 
+never used.  @typescript-e
+slint/no-unused-vars
+12:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+20:6  Warning: React Hook 
+useEffect has a missing 
+dependency: 'fetchOrder'. 
+Either include it or 
+remove the dependency 
+array.  react-hooks/exhaus
+tive-deps
+29:19  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+49:19  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+187:40  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/admin/page.tsx
+3:3  Error: 'TrendingUp' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+9:3  Error: 'Calendar' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+14:8  Error: 'Image' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+24:39  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/admin/products/n
+ew/page.tsx
+67:19  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+149:78  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/admin/products/p
+age.tsx
+5:56  Error: 'ArrowRight' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+6:10  Error: 'motion' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+10:44  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+17:6  Warning: React Hook 
+useEffect has a missing 
+dependency: 
+'fetchProducts'. Either 
+include it or remove the 
+dependency array.  react-h
+ooks/exhaustive-deps
+
+./src/app/admin/products/[
+id]/edit/page.tsx
+50:21  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+98:19  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+189:78  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/admin/users/page
+.tsx
+8:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+16:6  Warning: React Hook 
+useEffect has a missing 
+dependency: 'fetchUsers'. 
+Either include it or 
+remove the dependency 
+array.  react-hooks/exhaus
+tive-deps
+124:27  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+
+./src/app/api/admin/orders
+/route.ts
+8:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+16:24  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/admin/orders
+/[id]/route.ts
+8:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+34:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+46:33  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/admin/produc
+ts/route.ts
+8:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+16:24  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+39:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+54:36  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/admin/produc
+ts/[id]/route.ts
+8:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+30:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+36:9  Error: 'updateData' 
+is never reassigned. Use 
+'const' instead.  
+prefer-const
+36:21  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+63:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/admin/users/
+route.ts
+8:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+16:24  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+48:38  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/auth/registe
+r/route.ts
+56:19  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/orders/route
+.ts
+7:27  Error: 'request' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+72:32  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+74:36  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+80:12  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+84:11  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/payments/cre
+ate-order/route.ts
+36:30  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+46:12  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+47:11  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/payments/ver
+ify/route.ts
+5:10  Error: 
+'OrderStatus' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+49:32  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+61:12  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+62:11  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/payments/web
+hook/route.ts
+4:10  Error: 
+'OrderStatus' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+35:39  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+37:34  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+40:14  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+44:39  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+46:31  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+47:14  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/products/rou
+te.ts
+13:24  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/upload/route
+.ts
+10:55  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/api/user/profile
+/route.ts
+16:19  Error: 'email' is 
+assigned a value but 
+never used.  @typescript-e
+slint/no-unused-vars
+
+./src/app/dashboard/layout
+.tsx
+8:3  Error: 'ShoppingBag' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+18:3  Error: 'Package' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+19:3  Error: 
+'ExternalLink' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+20:3  Error: 'Code2' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+
+./src/app/dashboard/orders
+/page.tsx
+12:3  Error: 
+'ChevronRight' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+18:3  Error: 'Filter' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+23:10  Error: 
+'useOrdersStore' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+23:26  Error: 'Order' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+26:42  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+40:59  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+46:55  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+63:53  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+125:60  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+179:89  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+181:61  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+217:85  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+219:69  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+
+./src/app/dashboard/page.t
+sx
+23:9  Error: 'user' is 
+assigned a value but 
+never used.  @typescript-e
+slint/no-unused-vars
+26:56  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+41:48  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+42:36  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/dashboard/settin
+gs/page.tsx
+8:3  Error: 'Lock' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+10:3  Error: 'CreditCard' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+12:3  Error: 
+'ChevronRight' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+14:3  Error: 
+'ExternalLink' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+56:15  Error: 'error' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+116:59  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/app/dashboard/wishli
+st/page.tsx
+10:3  Error: 'LayoutGrid' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+11:3  Error: 'List' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+14:10  Error: 'cn' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+18:8  Error: 'Image' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+45:105  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+85:30  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+
+./src/app/error.tsx
+33:17  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/components/admin/Ima
+geUpload.tsx
+5:39  Error: 'ImageIcon' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+
+./src/components/home/Abou
+tSection.tsx
+8:3  Error: 'Lightbulb' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+51:16  Warning: Using 
+`<img>` could result in 
+slower LCP and higher 
+bandwidth. Consider using 
+`<Image />` from 
+`next/image` to 
+automatically optimize 
+images. This may incur 
+additional usage or cost 
+from your provider. See: h
+ttps://nextjs.org/docs/mes
+sages/no-img-element  
+@next/next/no-img-element
+
+./src/components/home/CTAB
+anner.tsx
+34:18  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+34:34  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+47:18  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/components/home/Feat
+uredProducts.tsx
+5:10  Error: 'Category' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+25:44  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+33:41  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+38:16  Error: 'err' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+
+./src/components/home/Stat
+sBar.tsx
+3:28  Error: 'useState' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+
+./src/components/home/Test
+imonials.tsx
+88:19  Error: `"` can be 
+escaped with `&quot;`, 
+`&ldquo;`, `&#34;`, 
+`&rdquo;`.  react/no-unesc
+aped-entities
+88:51  Error: `"` can be 
+escaped with `&quot;`, 
+`&ldquo;`, `&#34;`, 
+`&rdquo;`.  react/no-unesc
+aped-entities
+
+./src/components/layout/Fo
+oter.tsx
+70:22  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/components/layout/Na
+vbar.tsx
+181:25  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/components/product/B
+uySidebar.tsx
+101:98  Error: `'` can be 
+escaped with `&apos;`, 
+`&lsquo;`, `&#39;`, 
+`&rsquo;`.  react/no-unesc
+aped-entities
+
+./src/components/product/F
+eatureList.tsx
+11:3  Error: 'Lock' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+12:3  Error: 'Globe' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+
+./src/components/product/P
+roductHero.tsx
+88:14  Error: `"` can be 
+escaped with `&quot;`, 
+`&ldquo;`, `&#34;`, 
+`&rdquo;`.  react/no-unesc
+aped-entities
+88:116  Error: `"` can be 
+escaped with `&quot;`, 
+`&ldquo;`, `&#34;`, 
+`&rdquo;`.  react/no-unesc
+aped-entities
+
+./src/components/providers
+/ConsoleErrorSuppressor.ts
+x
+20:25  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+25:33  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/components/shop/Filt
+erSidebar.tsx
+4:35  Error: 'Search' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+
+./src/components/shop/Prod
+uctCard.tsx
+11:3  Error: 'ArrowRight' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+
+./src/lib/auth.ts
+57:31  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+59:31  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+60:32  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+66:26  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+67:26  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/lib/emails/adminNewO
+rder.ts
+1:108  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/lib/emails/orderConf
+irmation.ts
+1:67  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/lib/prisma.ts
+8:3  Error: Unexpected 
+var, use let or const 
+instead.  no-var
+
+./src/middleware.ts
+6:35  Error: Unexpected 
+any. Specify a different 
+type.  @typescript-eslint/
+no-explicit-any
+
+./src/types/index.ts
+1:20  Error: 'Role' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+1:39  Error: 
+'RequestStatus' is 
+defined but never used.  @
+typescript-eslint/no-unuse
+d-vars
+
+info  - Need to disable 
+some ESLint rules? Learn 
+more here: https://nextjs.
+org/docs/basic-features/es
+lint#disabling-rules

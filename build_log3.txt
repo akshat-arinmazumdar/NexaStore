@@ -1,0 +1,405 @@
+﻿
+> nexastore@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.23
+  - Environments: .env
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+
+./src/app/(auth)/login/page.tsx
+19:18  Warning: 'AnimatePresence' is defined but never used.  @typescript-eslint/no-unused-vars
+21:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+61:14  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars
+212:28  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/(auth)/register/page.tsx
+13:3  Warning: 'ShoppingBag' is defined but never used.  @typescript-eslint/no-unused-vars
+16:3  Warning: 'Layout' is defined but never used.  @typescript-eslint/no-unused-vars
+17:3  Warning: 'Zap' is defined but never used.  @typescript-eslint/no-unused-vars
+21:18  Warning: 'AnimatePresence' is defined but never used.  @typescript-eslint/no-unused-vars
+23:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+56:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/(public)/cart/page.tsx
+11:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+18:10  Warning: 'isApplied' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+18:21  Warning: 'setIsApplied' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+121:47  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/(public)/checkout/page.tsx
+13:3  Warning: 'ShoppingCart' is defined but never used.  @typescript-eslint/no-unused-vars
+18:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+97:35  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+120:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+139:34  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+141:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+192:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/(public)/checkout/success/page.tsx
+8:3  Warning: 'ArrowRight' is defined but never used.  @typescript-eslint/no-unused-vars
+15:3  Warning: 'ChevronRight' is defined but never used.  @typescript-eslint/no-unused-vars
+19:18  Warning: 'AnimatePresence' is defined but never used.  @typescript-eslint/no-unused-vars
+28:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+43:50  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+128:55  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+132:45  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+177:29  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/(public)/custom-project/page.tsx
+187:17  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+363:73  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+466:32  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/(public)/shop/page.tsx
+9:10  Warning: 'Category' is defined but never used.  @typescript-eslint/no-unused-vars
+24:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+32:41  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+37:16  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars
+154:124  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/(public)/wishlist/page.tsx
+16:3  Warning: 'Zap' is defined but never used.  @typescript-eslint/no-unused-vars
+22:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+40:35  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/admin/layout.tsx
+38:64  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+52:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+110:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/admin/orders/page.tsx
+5:45  Warning: 'ArrowRight' is defined but never used.  @typescript-eslint/no-unused-vars
+9:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+16:6  Warning: React Hook useEffect has a missing dependency: 'fetchOrders'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/orders/[id]/page.tsx
+7:10  Warning: 'motion' is defined but never used.  @typescript-eslint/no-unused-vars
+11:9  Warning: 'router' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+12:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+20:6  Warning: React Hook useEffect has a missing dependency: 'fetchOrder'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+29:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+49:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+187:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/admin/page.tsx
+3:3  Warning: 'TrendingUp' is defined but never used.  @typescript-eslint/no-unused-vars
+9:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+14:8  Warning: 'Image' is defined but never used.  @typescript-eslint/no-unused-vars
+24:39  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/admin/products/new/page.tsx
+67:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+149:78  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/admin/products/page.tsx
+5:56  Warning: 'ArrowRight' is defined but never used.  @typescript-eslint/no-unused-vars
+6:10  Warning: 'motion' is defined but never used.  @typescript-eslint/no-unused-vars
+10:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+17:6  Warning: React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/products/[id]/edit/page.tsx
+50:21  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+98:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+189:78  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/admin/users/page.tsx
+8:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+16:6  Warning: React Hook useEffect has a missing dependency: 'fetchUsers'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+124:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/api/admin/orders/route.ts
+8:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+16:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/admin/orders/[id]/route.ts
+8:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+34:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+46:33  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/admin/products/route.ts
+8:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+16:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+39:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+54:36  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/admin/products/[id]/route.ts
+8:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+30:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+36:9  Warning: 'updateData' is never reassigned. Use 'const' instead.  prefer-const
+36:21  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+63:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/admin/users/route.ts
+8:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+16:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+48:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/auth/register/route.ts
+56:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/orders/route.ts
+7:27  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+72:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+74:36  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+80:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+84:11  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/payments/create-order/route.ts
+36:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+46:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+47:11  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/payments/verify/route.ts
+5:10  Warning: 'OrderStatus' is defined but never used.  @typescript-eslint/no-unused-vars
+49:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+61:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+62:11  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/payments/webhook/route.ts
+4:10  Warning: 'OrderStatus' is defined but never used.  @typescript-eslint/no-unused-vars
+35:39  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+37:34  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+40:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+44:39  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+46:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+47:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/products/route.ts
+13:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/upload/route.ts
+10:55  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/user/profile/route.ts
+16:19  Warning: 'email' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/dashboard/layout.tsx
+8:3  Warning: 'ShoppingBag' is defined but never used.  @typescript-eslint/no-unused-vars
+18:3  Warning: 'Package' is defined but never used.  @typescript-eslint/no-unused-vars
+19:3  Warning: 'ExternalLink' is defined but never used.  @typescript-eslint/no-unused-vars
+20:3  Warning: 'Code2' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/dashboard/orders/page.tsx
+12:3  Warning: 'ChevronRight' is defined but never used.  @typescript-eslint/no-unused-vars
+18:3  Warning: 'Filter' is defined but never used.  @typescript-eslint/no-unused-vars
+23:10  Warning: 'useOrdersStore' is defined but never used.  @typescript-eslint/no-unused-vars
+23:26  Warning: 'Order' is defined but never used.  @typescript-eslint/no-unused-vars
+26:42  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+40:59  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+46:55  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+63:53  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+125:60  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+179:89  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+181:61  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+217:85  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+219:69  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/dashboard/page.tsx
+23:9  Warning: 'user' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+26:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+41:48  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+42:36  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/dashboard/settings/page.tsx
+8:3  Warning: 'Lock' is defined but never used.  @typescript-eslint/no-unused-vars
+10:3  Warning: 'CreditCard' is defined but never used.  @typescript-eslint/no-unused-vars
+12:3  Warning: 'ChevronRight' is defined but never used.  @typescript-eslint/no-unused-vars
+14:3  Warning: 'ExternalLink' is defined but never used.  @typescript-eslint/no-unused-vars
+56:15  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+116:59  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/dashboard/wishlist/page.tsx
+10:3  Warning: 'LayoutGrid' is defined but never used.  @typescript-eslint/no-unused-vars
+11:3  Warning: 'List' is defined but never used.  @typescript-eslint/no-unused-vars
+14:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+18:8  Warning: 'Image' is defined but never used.  @typescript-eslint/no-unused-vars
+45:105  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+85:30  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/error.tsx
+33:17  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/admin/ImageUpload.tsx
+5:39  Warning: 'ImageIcon' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/home/AboutSection.tsx
+8:3  Warning: 'Lightbulb' is defined but never used.  @typescript-eslint/no-unused-vars
+51:16  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/home/CTABanner.tsx
+34:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+34:34  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+47:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/home/FeaturedProducts.tsx
+5:10  Warning: 'Category' is defined but never used.  @typescript-eslint/no-unused-vars
+25:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+33:41  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+38:16  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/home/StatsBar.tsx
+3:28  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/home/Testimonials.tsx
+88:19  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+88:51  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./src/components/layout/Footer.tsx
+70:22  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/layout/Navbar.tsx
+181:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/product/BuySidebar.tsx
+101:98  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/product/FeatureList.tsx
+11:3  Warning: 'Lock' is defined but never used.  @typescript-eslint/no-unused-vars
+12:3  Warning: 'Globe' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/product/ProductHero.tsx
+88:14  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+88:116  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./src/components/providers/ConsoleErrorSuppressor.tsx
+20:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+25:33  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/shop/FilterSidebar.tsx
+4:35  Warning: 'Search' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/shop/ProductCard.tsx
+11:3  Warning: 'ArrowRight' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/lib/auth.ts
+57:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+59:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+60:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+66:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+67:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/email.ts
+26:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/emails/adminNewOrder.ts
+1:108  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/emails/orderConfirmation.ts
+1:67  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/middleware.ts
+6:35  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/index.ts
+1:20  Warning: 'Role' is defined but never used.  @typescript-eslint/no-unused-vars
+1:39  Warning: 'RequestStatus' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/34) ...
+node.exe : GET admin orders error: n [Error]: 
+Dynamic server usage: Route /api/admin/orders 
+couldn't be rendered statically because it used 
+`headers`. See more info here: https://nextjs.org/
+docs/messages/dynamic-server-error
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (GET  
+   admin order...ic-server-error:String) [], Rem  
+  oteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    at l (D:\Project\NexaStore\.next\server\chunks
+\8948.js:1:37158)
+    at d (D:\Project\NexaStore\.next\server\chunks
+\2403.js:1:1508)
+    at D:\Project\NexaStore\.next\server\chunks\24
+03.js:404:60492
+    at u (D:\Project\NexaStore\.next\server\app\ap
+i\admin\orders\route.js:1:934)
+    at D:\Project\NexaStore\node_modules\next\dist
+\compiled\next-server\app-route.runtime.prod.js:6:
+38417
+    at D:\Project\NexaStore\node_modules\next\dist
+\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (D:\Project\NexaSto
+re\node_modules\next\dist\compiled\@opentelemetry\
+api\index.js:1:7062)
+    at ContextAPI.with (D:\Project\NexaStore\node_
+modules\next\dist\compiled\@opentelemetry\api\inde
+x.js:1:518)
+    at NoopTracer.startActiveSpan (D:\Project\Nexa
+Store\node_modules\next\dist\compiled\@opentelemet
+ry\api\index.js:1:18093)
+    at ProxyTracer.startActiveSpan (D:\Project\Nex
+aStore\node_modules\next\dist\compiled\@openteleme
+try\api\index.js:1:18854) {
+  description: "Route /api/admin/orders couldn't 
+be rendered statically because it used `headers`. 
+See more info here: https://nextjs.org/docs/messag
+es/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (8/34) 
+   Generating static pages (16/34) 
+   Generating static pages (25/34) 
+ Γ£ô Generating static pages (34/34)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Γöî Γùï /                                    12.3 kB         172 kB
+Γö£ Γùï /_not-found                          873 B          88.1 kB
+Γö£ Γùï /admin                               184 B          94.7 kB
+Γö£ Γùï /admin/orders                        2.33 kB         105 kB
+Γö£ ╞Æ /admin/orders/[id]                   2.87 kB         106 kB
+Γö£ Γùï /admin/products                      2.46 kB         106 kB
+Γö£ ╞Æ /admin/products/[id]/edit            4.46 kB         146 kB
+Γö£ Γùï /admin/products/new                  4.12 kB         146 kB
+Γö£ Γùï /admin/users                         3.13 kB        98.9 kB
+Γö£ ╞Æ /api/admin/orders                    0 B                0 B
+Γö£ ╞Æ /api/admin/orders/[id]               0 B                0 B
+Γö£ ╞Æ /api/admin/products                  0 B                0 B
+Γö£ ╞Æ /api/admin/products/[id]             0 B                0 B
+Γö£ ╞Æ /api/admin/users                     0 B                0 B
+Γö£ ╞Æ /api/auth/[...nextauth]              0 B                0 B
+Γö£ ╞Æ /api/auth/register                   0 B                0 B
+Γö£ ╞Æ /api/orders                          0 B                0 B
+Γö£ ╞Æ /api/payments/create-order           0 B                0 B
+Γö£ ╞Æ /api/payments/verify                 0 B                0 B
+Γö£ ╞Æ /api/payments/webhook                0 B                0 B
+Γö£ ╞Æ /api/products                        0 B                0 B
+Γö£ ╞Æ /api/products/[id]                   0 B                0 B
+Γö£ Γùï /api/products/featured               0 B                0 B
+Γö£ ╞Æ /api/upload                          0 B                0 B
+Γö£ ╞Æ /api/user/profile                    0 B                0 B
+Γö£ Γùï /cart                                5 kB            165 kB
+Γö£ Γùï /checkout                            4.83 kB         159 kB
+Γö£ Γùï /checkout/success                    4.74 kB         159 kB
+Γö£ Γùï /custom-project                      7.68 kB         162 kB
+Γö£ Γùï /dashboard                           2.94 kB         152 kB
+Γö£ Γùï /dashboard/orders                    3.67 kB         144 kB
+Γö£ Γùï /dashboard/settings                  6.13 kB         147 kB
+Γö£ Γùï /dashboard/wishlist                  2.66 kB         143 kB
+Γö£ Γùï /login                               2.82 kB         160 kB
+Γö£ Γùï /register                            2.86 kB         160 kB
+Γö£ Γùï /shop                                7.01 kB         167 kB
+Γö£ ╞Æ /shop/[slug]                         2.45 kB         162 kB
+Γöö Γùï /wishlist                            4.42 kB         164 kB
++ First Load JS shared by all            87.2 kB
+  Γö£ chunks/117-41c486e0bbb98ed2.js       31.6 kB
+  Γö£ chunks/fd9d1056-411c0e320fe15393.js  53.6 kB
+  Γöö other shared chunks (total)          1.95 kB
+
+
+╞Æ Middleware                             104 kB
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
