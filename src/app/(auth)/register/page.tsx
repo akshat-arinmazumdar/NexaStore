@@ -10,17 +10,13 @@ import {
   ArrowRight, 
   Code2, 
   Globe, 
-  ShoppingBag, 
   Rocket, 
   CheckCircle2, 
-  Layout, 
-  Zap,
   Info,
   Loader2
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
@@ -53,8 +49,8 @@ const RegisterPage = () => {
 
       // Success
       router.push("/login?registered=true");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }

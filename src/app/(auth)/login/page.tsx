@@ -16,9 +16,8 @@ import {
   Loader2,
   CheckCircle2
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
@@ -58,7 +57,7 @@ const LoginPage = () => {
         router.push("/dashboard");
         router.refresh();
       }
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred");
     } finally {
       setLoading(false);
@@ -209,7 +208,7 @@ const LoginPage = () => {
 
                   <div className="pt-8 text-center">
                      <p className="text-slate-500 text-sm">
-                        Don't have an account? <Link href="/register" className="text-indigo-400 font-bold hover:text-white transition-all underline underline-offset-4">Join Hub</Link>
+                        Don&apos;t have an account? <Link href="/register" className="text-indigo-400 font-bold hover:text-white transition-all underline underline-offset-4">Join Hub</Link>
                      </p>
                   </div>
                </form>
