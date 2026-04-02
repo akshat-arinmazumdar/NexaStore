@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 import React from "react";
 import { 
   TrendingUp, 
@@ -12,7 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 
 async function getStats() {
@@ -124,8 +127,8 @@ export default async function AdminDashboardPage() {
                         <tr key={order.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                            <td className="px-6 py-4 text-xs font-mono text-slate-400">#{order.id.slice(-8)}</td>
                            <td className="px-6 py-4">
-                              <p className="text-sm font-bold text-white uppercase">{order.user.name}</p>
-                              <p className="text-[10px] text-slate-500">{order.user.email}</p>
+                              <p className="text-sm font-bold text-white uppercase">{order.user?.name || "Unknown User"}</p>
+                              <p className="text-[10px] text-slate-500">{order.user?.email || "No email"}</p>
                            </td>
                            <td className="px-6 py-4 text-sm font-bold text-white">₹{order.totalAmount}</td>
                            <td className="px-6 py-4">
