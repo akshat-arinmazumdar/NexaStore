@@ -122,8 +122,7 @@ test.describe.serial("Phase 3 - Page Tests", () => {
     const addToCartButtons = page.getByRole("button", {
       name: /add to cart/i,
     });
-    const count = await addToCartButtons.count();
-    expect(count).toBeGreaterThanOrEqual(10);
+    await expect(addToCartButtons).toHaveCount(10, { timeout: 60000 });
     await expectNoErrors("Shop initial");
 
     const shopAddToCartCount = await addToCartButtons.count();
