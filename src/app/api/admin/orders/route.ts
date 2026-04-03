@@ -1,46 +1,24 @@
 export const dynamic = "force-dynamic"
-export const revalidate = 0
+export const runtime = "nodejs"
 
-export const runtime = "nodejs";
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { auth } from "@/auth";
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const session = await auth();
+    const { prisma } = await import("@/lib/prisma")
+    const { getServerSession } = await import("next-auth")
+    const { authOptions } = await import("@/lib/auth")
+    
+    const session = await getServerSession(authOptions)
     if (!session || (session.user as any)?.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
-
-    const { searchParams } = new URL(req.url);
-    const search = searchParams.get('search') || '';
-    const status = searchParams.get('status') || 'ALL';
-
-    const whereClause: any = {};
-    if (status !== 'ALL') {
-      whereClause.status = status;
-    }
-
-    if (search) {
-      whereClause.OR = [
-        { id: { contains: search, mode: "insensitive" } },
-        { user: { email: { contains: search, mode: "insensitive" } } },
-      ];
-    }
-
+    
     const orders = await prisma.order.findMany({
-      where: whereClause,
-      include: {
-        user: { select: { name: true, email: true } },
-        items: { include: { product: { select: { name: true } } } },
-      },
-      orderBy: { createdAt: "desc" },
-    });
-
-    return NextResponse.json(orders);
+      include: { user: true, items: true }
+    })
+    return NextResponse.json(orders)
   } catch (error) {
-    console.error("GET admin orders error:", error);
-    return NextResponse.json({ error: "Failed to fetch orders" }, { status: 500 });
+    return NextResponse.json({ error: "Server error" }, { status: 500 })
   }
 }

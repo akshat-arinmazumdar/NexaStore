@@ -1,14 +1,15 @@
 export const dynamic = "force-dynamic"
-export const revalidate = 0
+export const runtime = "nodejs"
 
-export const runtime = "nodejs";
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { auth } from "@/auth";
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const session = await auth();
+    const { prisma } = await import("@/lib/prisma")
+    const { getServerSession } = await import("next-auth")
+    const { authOptions } = await import("@/lib/auth")
+    
+    const session = await getServerSession(authOptions)
     if (!session || (session.user as any)?.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -41,14 +42,17 @@ export async function GET(req: Request) {
 
     return NextResponse.json(users);
   } catch (error) {
-    console.error("GET admin users error:", error);
     return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 });
   }
 }
 
-export async function PATCH(req: Request) {
+export async function PATCH(req: NextRequest) {
   try {
-    const session = await auth();
+    const { prisma } = await import("@/lib/prisma")
+    const { getServerSession } = await import("next-auth")
+    const { authOptions } = await import("@/lib/auth")
+    
+    const session = await getServerSession(authOptions)
     if (!session || (session.user as any)?.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -67,7 +71,6 @@ export async function PATCH(req: Request) {
 
     return NextResponse.json(updatedUser);
   } catch (error) {
-    console.error("PATCH admin users error:", error);
     return NextResponse.json({ error: "Failed to update user role" }, { status: 500 });
   }
 }

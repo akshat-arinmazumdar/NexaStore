@@ -1,14 +1,15 @@
 export const dynamic = "force-dynamic"
-export const revalidate = 0
+export const runtime = "nodejs"
 
-export const runtime = "nodejs";
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { auth } from "@/auth";
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const session = await auth();
+    const { prisma } = await import("@/lib/prisma")
+    const { getServerSession } = await import("next-auth")
+    const { authOptions } = await import("@/lib/auth")
+    
+    const session = await getServerSession(authOptions)
     if (!session || (session.user as any)?.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -27,14 +28,17 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(order);
   } catch (error) {
-    console.error("GET admin single order error:", error);
     return NextResponse.json({ error: "Failed to fetch order" }, { status: 500 });
   }
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const session = await auth();
+    const { prisma } = await import("@/lib/prisma")
+    const { getServerSession } = await import("next-auth")
+    const { authOptions } = await import("@/lib/auth")
+    
+    const session = await getServerSession(authOptions)
     if (!session || (session.user as any)?.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -52,7 +56,6 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
     return NextResponse.json(order);
   } catch (error) {
-    console.error("PATCH admin single order error:", error);
     return NextResponse.json({ error: "Failed to update order" }, { status: 500 });
   }
 }
