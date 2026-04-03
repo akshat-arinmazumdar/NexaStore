@@ -42,15 +42,17 @@ export async function POST(req: Request) {
     });
 
     // Send welcome email
-    try {
-      await sendEmail({
-        to: user.email!,
-        subject: "Welcome to NexaStore! 🎉",
-        html: welcomeEmail(user.name!)
-      });
-    } catch (emailError) {
-      console.error("WELCOME_EMAIL_ERROR", emailError);
-      // Don't fail registration if email fails
+    if (process.env.SENDGRID_API_KEY) {
+      try {
+        await sendEmail({
+          to: user.email!,
+          subject: "Welcome to NexaStore! 🎉",
+          html: welcomeEmail(user.name!)
+        });
+      } catch (emailError) {
+        console.error("WELCOME_EMAIL_ERROR", emailError);
+        // Don't fail registration if email fails
+      }
     }
 
     return NextResponse.json(
