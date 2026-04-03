@@ -201,8 +201,13 @@ const LoginPage = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
-                     <button type="button" onClick={() => signIn("google")} className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border-white/5 hover:border-slate-400">
-                        <Globe className="w-4 h-4" /> Google
+                     <button 
+                       type="button"
+                       onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+                       style={{width:"100%", padding:"12px", marginBottom:"16px"}}
+                       className="btn-secondary flex items-center justify-center gap-3 text-xs bg-[#1E293B] border-white/5 hover:border-slate-400"
+                     >
+                       Continue with Google 🔵
                      </button>
                      <button type="button" onClick={() => signIn("github")} className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border-white/5 hover:border-slate-400">
                         <Code2 className="w-4 h-4" /> Github
