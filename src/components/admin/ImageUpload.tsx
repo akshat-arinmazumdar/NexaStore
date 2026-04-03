@@ -17,20 +17,22 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
 }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [uploadError, setUploadError] = useState("");
 
   const handleUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUploadError("");
     const file = e.target.files?.[0];
     if (!file) return;
 
     // Validate file type and size
     const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!validTypes.includes(file.type)) {
-      alert('Please upload a JPG, PNG, or WebP image.');
+      setUploadError('Please upload a JPG, PNG, or WebP image.');
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert('File size must be less than 5MB.');
+      setUploadError('File size must be less than 5MB.');
       return;
     }
 
@@ -61,9 +63,9 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       } else {
         throw new Error(data.error || 'Upload failed');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Upload Error:', error);
-      alert('Failed to upload image. Please try again.');
+      setUploadError(error.message || 'Failed to upload image. Please try again.');
     } finally {
       setTimeout(() => {
         setIsUploading(false);
@@ -119,7 +121,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                   JPG, PNG, WebP (MAX. 5MB)
                 </p>
               </div>
-              <input
+                <input
                 type="file"
                 className="hidden"
                 accept="image/*"
@@ -127,6 +129,11 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                 disabled={isUploading}
               />
             </label>
+            {uploadError && (
+              <p className="mt-2 text-sm text-red-500 font-medium">
+                {uploadError}
+              </p>
+            )}
           </div>
         )}
       </div>

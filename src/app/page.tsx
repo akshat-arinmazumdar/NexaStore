@@ -12,6 +12,15 @@ import CTABanner from "@/components/home/CTABanner";
 import AboutSection from "@/components/home/AboutSection";
 import Footer from "@/components/layout/Footer";
 
+export const metadata = {
+  title: "NexaStore — Premium Digital Assets",
+  description: "Browse premium templates, UI kits and digital products at NexaStore.",
+  openGraph: {
+    title: "NexaStore",
+    images: ["/og-image.png"]
+  }
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0F172A] relative overflow-hidden">

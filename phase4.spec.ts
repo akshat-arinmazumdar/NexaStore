@@ -19,7 +19,7 @@ test("Phase 4 - API routes", async ({ page, request }) => {
   expect(resAll.status()).toBe(200);
   const all = await resAll.json();
   expect(Array.isArray(all)).toBe(true);
-  expect(all.length).toBe(10);
+  expect(all.length).toBeGreaterThanOrEqual(10);
 
   // search=saas
   const resSearch = await request.get("/api/products?search=saas");

@@ -198,19 +198,22 @@ const RegisterPage = () => {
                      <div className="h-[1px] flex-grow bg-white/5" />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                     <button 
-                       type="button"
-                       onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-                       style={{width:"100%", padding:"12px", marginBottom:"16px"}}
-                       className="btn-secondary flex items-center justify-center gap-3 text-xs bg-[#1E293B] border-white/5 hover:border-slate-400"
-                     >
-                       Continue with Google 🔵
-                     </button>
-                     <button type="button" className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border-white/5 hover:border-slate-400">
-                        <Code2 className="w-4 h-4" /> GitHub Hub
-                     </button>
-                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                      <button 
+                        type="button"
+                        onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+                        className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border border-white/5 hover:border-indigo-500/50 transition-all shadow-xl"
+                      >
+                         <Globe className="w-4 h-4 text-blue-400" /> Google
+                      </button>
+                      <button 
+                        type="button" 
+                        onClick={() => signIn("github", { callbackUrl: "/dashboard" })} 
+                        className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border border-white/5 hover:border-slate-400 transition-all shadow-xl"
+                      >
+                         <Code2 className="w-4 h-4" /> GitHub
+                      </button>
+                   </div>
 
                   <div className="pt-8 text-center">
                      <p className="text-slate-400 text-sm">

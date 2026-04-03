@@ -33,9 +33,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
 
   useEffect(() => {
+    if (status === "loading") return;
+    
+    // Debugging access
+    console.log("Admin Layout - Auth Status:", status);
+    console.log("Admin Layout - User Role:", (session?.user as any)?.role);
+
     if (status === "unauthenticated") {
       router.push("/login");
     } else if (status === "authenticated" && (session?.user as any)?.role !== "ADMIN") {
+      console.warn("Non-admin user tried accessing /admin. Redirecting to /dashboard...");
       router.push("/dashboard");
     }
   }, [status, session, router]);

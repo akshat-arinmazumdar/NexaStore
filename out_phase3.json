@@ -1,0 +1,145 @@
+{
+  "config": {
+    "configFile": "D:\\Project\\NexaStore\\playwright.config.ts",
+    "rootDir": "D:/Project/NexaStore",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Project/NexaStore/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/Project/NexaStore",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 8,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "phase3.spec.ts",
+      "file": "phase3.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Phase 3 - Page Tests",
+          "file": "phase3.spec.ts",
+          "line": 56,
+          "column": 15,
+          "specs": [
+            {
+              "title": "Home -> Shop -> Product Detail -> Cart -> Auth -> Dashboard -> Checkout",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 62065,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /add to cart/i })\nExpected: \u001b[32m10\u001b[39m\nReceived: \u001b[31m12\u001b[39m\nTimeout:  60000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /add to cart/i })\u001b[22m\n\u001b[2m    3 × locator resolved to 0 elements\u001b[22m\n\u001b[2m      - unexpected value \"0\"\u001b[22m\n\u001b[2m    60 × locator resolved to 12 elements\u001b[22m\n\u001b[2m       - unexpected value \"12\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /add to cart/i })\nExpected: \u001b[32m10\u001b[39m\nReceived: \u001b[31m12\u001b[39m\nTimeout:  60000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /add to cart/i })\u001b[22m\n\u001b[2m    3 × locator resolved to 0 elements\u001b[22m\n\u001b[2m      - unexpected value \"0\"\u001b[22m\n\u001b[2m    60 × locator resolved to 12 elements\u001b[22m\n\u001b[2m       - unexpected value \"12\"\u001b[22m\n\n    at D:\\Project\\NexaStore\\phase3.spec.ts:125:36",
+                        "location": {
+                          "file": "D:\\Project\\NexaStore\\phase3.spec.ts",
+                          "column": 36,
+                          "line": 125
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 123 |\u001b[39m       name\u001b[33m:\u001b[39m \u001b[35m/add to cart/i\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 124 |\u001b[39m     })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 125 |\u001b[39m     \u001b[36mawait\u001b[39m expect(addToCartButtons)\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m10\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 126 |\u001b[39m     \u001b[36mawait\u001b[39m expectNoErrors(\u001b[32m\"Shop initial\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 127 |\u001b[39m\n \u001b[90m 128 |\u001b[39m     \u001b[36mconst\u001b[39m shopAddToCartCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m addToCartButtons\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Project\\NexaStore\\phase3.spec.ts",
+                            "column": 36,
+                            "line": 125
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /add to cart/i })\nExpected: \u001b[32m10\u001b[39m\nReceived: \u001b[31m12\u001b[39m\nTimeout:  60000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /add to cart/i })\u001b[22m\n\u001b[2m    3 × locator resolved to 0 elements\u001b[22m\n\u001b[2m      - unexpected value \"0\"\u001b[22m\n\u001b[2m    60 × locator resolved to 12 elements\u001b[22m\n\u001b[2m       - unexpected value \"12\"\u001b[22m\n\n\n  123 |       name: /add to cart/i,\n  124 |     });\n> 125 |     await expect(addToCartButtons).toHaveCount(10, { timeout: 60000 });\n      |                                    ^\n  126 |     await expectNoErrors(\"Shop initial\");\n  127 |\n  128 |     const shopAddToCartCount = await addToCartButtons.count();\n    at D:\\Project\\NexaStore\\phase3.spec.ts:125:36"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-03T20:25:11.745Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Project\\NexaStore\\test-results\\phase3-Phase-3---Page-Test-87b67-Auth---Dashboard---Checkout-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Project\\NexaStore\\phase3.spec.ts",
+                        "column": 36,
+                        "line": 125
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a64b8b583ae028ac2231-586e7af2f49f58477260",
+              "file": "phase3.spec.ts",
+              "line": 57,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-03T20:25:11.104Z",
+    "duration": 62854.133,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

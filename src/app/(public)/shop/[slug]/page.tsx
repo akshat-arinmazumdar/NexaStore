@@ -12,6 +12,26 @@ import AddToCartButton from "@/components/shop/AddToCartButton";
 
 const prisma = new PrismaClient();
 
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const product = await prisma.product.findUnique({
+    where: { slug: params.slug },
+    select: { name: true, description: true, images: true }
+  });
+
+  if (!product) {
+    return { title: 'Product Not Found | NexaStore' };
+  }
+
+  return {
+    title: `${product.name} | NexaStore`,
+    description: product.description.slice(0, 160),
+    openGraph: {
+      title: product.name,
+      images: [product.images[0] || "/images/placeholder.png"]
+    }
+  };
+}
+
 export default async function ProductDetailPage({ 
   params 
 }: { 

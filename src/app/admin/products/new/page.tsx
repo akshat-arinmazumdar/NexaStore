@@ -26,6 +26,7 @@ export default function NewProductPage() {
     badge: "",
     demoUrl: "",
     images: [] as string[],
+    accessLink: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -43,6 +44,10 @@ export default function NewProductPage() {
     setError("");
 
     try {
+      if (!formData.images || formData.images.length === 0) {
+        throw new Error("Please upload a product image before saving.");
+      }
+
       // Process comma separated fields
       const techStack = formData.techStack.split(",").map(i => i.trim()).filter(Boolean);
       const features = formData.features.split("\n").map(i => i.trim()).filter(Boolean);
