@@ -1,3 +1,7 @@
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+export async function generateStaticParams() { return [] }
+
 import React from "react";
 import { PrismaClient } from "@prisma/client";
 import Navbar from "@/components/layout/Navbar";
