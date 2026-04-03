@@ -15,9 +15,13 @@ export const uploadImage = async (file: string) => {
       url: result.secure_url,
       publicId: result.public_id,
     };
-  } catch (error) {
-    console.error('Cloudinary Upload Error:', error);
-    throw new Error('Failed to upload image to Cloudinary');
+  } catch (error: any) {
+    console.error('Cloudinary Upload Raw Error:', error);
+    // Explicitly check for configuration missing
+    if (!process.env.CLOUDINARY_CLOUD_NAME) {
+      console.error('Cloudinary Error: CLOUDINARY_CLOUD_NAME is missing in .env');
+    }
+    throw error;
   }
 };
 

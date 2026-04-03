@@ -59,6 +59,8 @@ const CustomProjectPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [showPayment, setShowPayment] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"card" | "qr" | null>(null);
   const [qrTimer, setQrTimer] = useState(300); // 5 mins
@@ -92,10 +94,29 @@ const CustomProjectPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setError("");
+    setSuccess("");
+    
+    try {
+      const response = await fetch("/api/custom-project", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        setSuccess("✅ Request submitted! We will contact you within 24-48 hours.");
+      } else {
+        setError(data.error || "Something went wrong");
+      }
+    } catch (err) {
+      setError("Failed to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const CustomSelect = ({ 
@@ -209,6 +230,11 @@ const CustomProjectPage = () => {
               className="glass p-8 md:p-12 shadow-2xl bg-[#1E293B]/70 border-indigo-500/20"
             >
               <form onSubmit={handleSubmit} className="space-y-10">
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/20 text-red-500 p-4 rounded-xl text-sm font-medium animate-pulse">
+                    ⚠️ {error}
+                  </div>
+                )}
                 {/* Personal Info Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                    <div className="space-y-3">
