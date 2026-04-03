@@ -153,8 +153,8 @@ export default function ShopPage() {
                  <div className="w-24 h-24 bg-slate-800/50 rounded-full flex items-center justify-center mb-6">
                     <PackageX className="w-12 h-12 text-slate-600" />
                  </div>
-                 <h2 className="text-2xl font-bold text-white mb-2">No Products Found</h2>
-                 <p className="text-slate-400 max-w-xs mx-auto">Try adjusting your filters or search query to find what you're looking for.</p>
+                 <h2 className="text-2xl font-bold text-white mb-2">No products available yet.</h2>
+                 <p className="text-slate-400 max-w-xs mx-auto">Check back soon! Our admin is adding fresh digital assets.</p>
                  <button 
                   onClick={() => {
                     setActiveCategory("ALL");
@@ -165,7 +165,7 @@ export default function ShopPage() {
                   }}
                   className="mt-8 text-indigo-400 font-bold hover:text-white transition-colors"
                  >
-                   Clear All Filters
+                   Reset Filters
                  </button>
               </motion.div>
             )}
