@@ -8,6 +8,7 @@ import { prisma } from "@/lib/prisma"
 function getDirectDownloadUrl(url: string): string {
   const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
   if (driveMatch) {
+    // Note: confirm=t is needed for large files for direct download
     return `https://drive.google.com/uc?export=download&confirm=t&id=${driveMatch[1]}`
   }
   return url
@@ -54,33 +55,10 @@ export async function GET(
 
     const directUrl = getDirectDownloadUrl(product.downloadUrl)
 
-    // Fetch the file from Google Drive
-    const fileResponse = await fetch(directUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0'
-      }
-    })
-
-    if (!fileResponse.ok) {
-      // Fallback: redirect to download URL
-      return NextResponse.redirect(directUrl)
-    }
-
-    // Get filename from product name
-    const filename = product.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, '-')
-      + '.zip'
-
-    // Stream file directly to user
-    const fileBuffer = await fileResponse.arrayBuffer()
-    
-    return new NextResponse(fileBuffer, {
-      headers: {
-        'Content-Type': 'application/octet-stream',
-        'Content-Disposition': `attachment; filename="${filename}"`,
-        'Content-Length': fileBuffer.byteLength.toString(),
-      }
+    return NextResponse.json({ 
+      success: true,
+      downloadUrl: directUrl,
+      filename: product.name.toLowerCase().replace(/[^a-z0-9]/g, '-') + '.zip'
     })
 
   } catch (error: any) {

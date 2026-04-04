@@ -28,6 +28,7 @@ const DashboardOverview = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [purchasedItems, setPurchasedItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [downloading, setDownloading] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -62,6 +63,31 @@ const DashboardOverview = () => {
         .finally(() => setLoading(false));
     }
   }, [status, router]);
+
+  const handleDownload = async (productId: string) => {
+    setDownloading(productId);
+    try {
+      const response = await fetch(`/api/download/${productId}`);
+      const data = await response.json();
+      
+      if (response.ok && data.downloadUrl) {
+         // Create hidden link and click it for safe download
+         const link = document.createElement('a');
+         link.href = data.downloadUrl;
+         link.setAttribute('download', data.filename || 'download.zip');
+         link.setAttribute('target', '_blank');
+         document.body.appendChild(link);
+         link.click();
+         document.body.removeChild(link);
+      } else {
+        alert(data.error || "Download failed. Please contact support.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please check your connection and try again.");
+    } finally {
+      setDownloading(null);
+    }
+  };
 
   const filteredItems = purchasedItems.filter(item => 
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -156,16 +182,20 @@ const DashboardOverview = () => {
                         </p>
                      </div>
 
-                      <div className="flex items-center gap-3 w-full xl:w-auto">
+                     <div className="flex items-center gap-3 w-full xl:w-auto">
                         <button className="flex-1 xl:flex-none py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white text-xs font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                            <Code2 className="w-4 h-4" /> Repository
                         </button>
-                        <a 
-                           href={`/api/download/${item.productId}`}
-                           download
-                           className="flex-1 xl:flex-none py-3 px-6 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20">
-                           <Download className="w-4 h-4" /> Download Files
-                        </a>
+                        <button 
+                           onClick={() => handleDownload(item.productId)}
+                           disabled={downloading === item.productId}
+                           className="flex-1 xl:flex-none py-3 px-6 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 disabled:opacity-50">
+                           {downloading === item.productId ? "Downloading..." : (
+                               <>
+                                   <Download className="w-4 h-4" /> Download Files
+                               </>
+                           )}
+                        </button>
                       </div>
                   </motion.div>
                 ))
