@@ -63,83 +63,88 @@ const CheckoutClient = ({ session }: CheckoutClientProps) => {
   }
 
   const handlePayment = async () => {
-    if (!session?.user) {
-      toast.error("Please login to continue")
-      router.push('/login')
-      return
-    }
-
     setIsProcessing(true);
     setError(null);
-
+    
     try {
-      const response = await fetch("/api/payments/create-order", {
+      const cartTotal = getTotal();
+      
+      const orderResponse = await fetch("/api/payments/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          amount: getTotal(),
-          productIds: items.map(item => item.id),
-        }),
+          amount: cartTotal,
+          productIds: items.map(item => item.id)
+        })
       });
-
-      const orderData = await response.json();
-
-      if (!response.ok) {
-        throw new Error(orderData.error || "Failed to initiate payment");
+      
+      const orderData = await orderResponse.json();
+      console.log("Order response:", orderData);
+      
+      if (!orderResponse.ok) {
+        setError(orderData.error || "Failed to create order");
+        setIsProcessing(false);
+        return;
       }
 
       const options = {
         key: orderData.keyId,
         amount: orderData.amount,
-        currency: orderData.currency,
+        currency: orderData.currency || "INR",
         name: "NexaStore",
         description: "Digital Products Purchase",
-        order_id: orderData.razorpayOrderId,
-        handler: async (response: any) => {
+        order_id: orderData.orderId,
+        prefill: {
+          name: session?.user?.name || "",
+          email: session?.user?.email || "",
+        },
+        theme: { color: "#6366f1" },
+        handler: async function(response: any) {
+          console.log("Payment success:", response);
+          setIsProcessing(true);
+          
           try {
-            setIsProcessing(true);
-            const verifyRes = await fetch("/api/payments/verify", {
+            const verifyResponse = await fetch("/api/payments/verify", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 razorpayOrderId: response.razorpay_order_id,
                 razorpayPaymentId: response.razorpay_payment_id,
                 razorpaySignature: response.razorpay_signature,
-                orderId: orderData.orderId,
-              }),
+                orderId: orderData.dbOrderId, // Use database ID for verification
+              })
             });
-
-            const verifyData = await verifyRes.json();
-
-            if (verifyRes.ok) {
+            
+            const verifyData = await verifyResponse.json();
+            console.log("Verify response:", verifyData);
+            
+            if (verifyData.success) {
               clearCart();
-              router.push("/checkout/success?orderId=" + verifyData.orderId);
+              router.push("/checkout/success");
             } else {
-              throw new Error(verifyData.error || "Payment verification failed");
+              setError(verifyData.error || "Payment verification failed");
+              setIsProcessing(false);
             }
           } catch (err: any) {
-            setError(err.message);
+            console.error("Verification error:", err);
+            setError("Verification failed: " + err.message);
             setIsProcessing(false);
           }
         },
-        prefill: {
-          name: session?.user?.name || "",
-          email: session?.user?.email || "",
-        },
-        theme: {
-          color: "#6366f1",
-        },
         modal: {
-          ondismiss: () => {
+          ondismiss: function() {
             setIsProcessing(false);
-          },
-        },
-      };
-
+            setError("Payment cancelled");
+          }
+        }
+      }
+      
       const rzp = new (window as any).Razorpay(options);
       rzp.open();
+      
     } catch (err: any) {
-      setError(err.message);
+      console.error("Payment error:", err);
+      setError("Payment failed: " + err.message);
       setIsProcessing(false);
     }
   };
