@@ -1,87 +1,130 @@
-"use client";
-
-import React from "react";
-import { Shield, Lock, Eye, FileText, Globe, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+export const dynamic = "force-dynamic"
 
 export default function PrivacyPolicy() {
-  const lastUpdated = "April 2026";
-
-  const sections = [
-    {
-      icon: <Eye className="w-6 h-6 text-indigo-400" />,
-      title: "Data We Collect",
-      content: "We collect information you provide directly to us, such as your name, email address, payment information (via Razorpay), and any other information you choose to provide. We also collect technical data such as IP address and browser type for security and analytics."
-    },
-    {
-      icon: <FileText className="w-6 h-6 text-indigo-400" />,
-      title: "How We Use Data",
-      content: "We use your data to process transactions, deliver digital assets, communicate with you about your orders, and improve our services. Your email is used for account verification and sending purchase receipts via SendGrid."
-    },
-    {
-      icon: <Globe className="w-6 h-6 text-indigo-400" />,
-      title: "Third Party Services",
-      content: "We use trusted third-party services to power NexaStore: Razorpay for secure payments, Cloudinary for asset storage, and SendGrid for email communications. Each provider has their own privacy policy regarding your data."
-    },
-    {
-      icon: <Shield className="w-6 h-6 text-indigo-400" />,
-      title: "User Rights",
-      content: "You have the right to access, update, or delete your personal information at any time. You can manage your account settings from the user dashboard or contact us directly for data removal requests."
-    },
-    {
-      icon: <Lock className="w-6 h-6 text-indigo-400" />,
-      title: "Cookies Policy",
-      content: "We use essential cookies to keep you logged in and remember your cart items. We also use analytics cookies to understand how users interact with our marketplace. You can disable cookies in your browser, but some features may not function correctly."
-    },
-    {
-      icon: <Mail className="w-6 h-6 text-indigo-400" />,
-      title: "Contact Us",
-      content: "If you have any questions about this Privacy Policy, please contact us at pocketmoneystudents@gmail.com. We aim to respond to all inquiries within 24-48 hours."
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-[#0F172A] pt-32 pb-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-            Privacy <span className="text-indigo-500">Policy</span>
-          </h1>
-          <p className="text-slate-400">Last updated: {lastUpdated}</p>
-        </motion.div>
+    <div style={{
+      minHeight: "100vh",
+      background: "#0f0f1a",
+      color: "#e2e8f0",
+      padding: "120px 20px 80px"
+    }}>
+      <div style={{
+        maxWidth: "800px",
+        margin: "0 auto"
+      }}>
+        <h1 style={{ 
+          color: "#6366f1", 
+          fontSize: "3rem", 
+          marginBottom: "10px",
+          fontWeight: "bold" 
+        }}>Privacy Policy</h1>
+        <p style={{ color: "#6b7280", marginBottom: "40px" }}>Last Updated: April 2026</p>
+        
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          
+          <section style={{ 
+            background: "#1a1a2e", 
+            padding: "25px", 
+            borderRadius: "12px",
+            border: "1px solid #2d2d4e" 
+          }}>
+            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>1. Information We Collect</h2>
+            <p style={{ lineHeight: "1.6" }}>
+              We collect information you provide directly to us, including your name, email address, and payment information. 
+              We also collect usage data and use cookies to enhance your experience on NexaStore.
+            </p>
+          </section>
 
-        <div className="space-y-8">
-          {sections.map((section, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-indigo-500/30 transition-all group"
-            >
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  {section.icon}
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white mb-3">{section.title}</h2>
-                  <p className="text-slate-400 leading-relaxed">{section.content}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+          <section style={{ 
+            background: "#1a1a2e", 
+            padding: "25px", 
+            borderRadius: "12px",
+            border: "1px solid #2d2d4e" 
+          }}>
+            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>2. How We Use Information</h2>
+            <p style={{ lineHeight: "1.6" }}>
+              We use the collected information to:
+              <ul style={{ marginTop: "10px", paddingLeft: "20px" }}>
+                <li>Process payments securely via <strong>Razorpay</strong>.</li>
+                <li>Send transactional emails and updates via <strong>SendGrid</strong>.</li>
+                <li>Manage and store product images via <strong>Cloudinary</strong>.</li>
+              </ul>
+            </p>
+          </section>
 
-        <div className="mt-16 p-8 bg-indigo-600/10 border border-indigo-500/20 rounded-2xl text-center">
-          <p className="text-slate-300">
-            By using NexaStore, you agree to the collection and use of information in accordance with this policy.
-          </p>
+          <section style={{ 
+            background: "#1a1a2e", 
+            padding: "25px", 
+            borderRadius: "12px",
+            border: "1px solid #2d2d4e" 
+          }}>
+            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>3. Data Security</h2>
+            <p style={{ lineHeight: "1.6" }}>
+              NexaStore prioritizes your security. All user passwords are encrypted using industry-standard hashing algorithms, 
+              and all payment processing is handled through secure, PCI-compliant gateways.
+            </p>
+          </section>
+
+          <section style={{ 
+            background: "#1a1a2e", 
+            padding: "25px", 
+            borderRadius: "12px",
+            border: "1px solid #2d2d4e" 
+          }}>
+            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>4. Cookies</h2>
+            <p style={{ lineHeight: "1.6" }}>
+              We use both session cookies (which expire once you close your web browser) and persistent cookies 
+              (which stay on your computer until you delete them) to provide you with a more personal and interactive experience.
+            </p>
+          </section>
+
+          <section style={{ 
+            background: "#1a1a2e", 
+            padding: "25px", 
+            borderRadius: "12px",
+            border: "1px solid #2d2d4e" 
+          }}>
+            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>5. Third Party Services</h2>
+            <p style={{ lineHeight: "1.6" }}>
+              To provide a world-class experience, we integrate with:
+              <ul style={{ marginTop: "10px", paddingLeft: "20px" }}>
+                <li><strong>Razorpay</strong>: Secure Payment Processing</li>
+                <li><strong>SendGrid</strong>: Reliable Email Delivery</li>
+                <li><strong>Cloudinary</strong>: Optimized Asset Management</li>
+                <li><strong>Neon</strong>: Scalable PostgreSQL Database</li>
+              </ul>
+            </p>
+          </section>
+
+          <section style={{ 
+            background: "#1a1a2e", 
+            padding: "25px", 
+            borderRadius: "12px",
+            border: "1px solid #2d2d4e" 
+          }}>
+            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>6. User Rights</h2>
+            <p style={{ lineHeight: "1.6" }}>
+              You have the right to access your data, request corrections, or delete your account entirely. 
+              Please contact us if you wish to exercise any of these rights.
+            </p>
+          </section>
+
+          <section style={{ 
+            background: "#1a1a2e", 
+            padding: "25px", 
+            borderRadius: "12px",
+            border: "1px solid #2d2d4e" 
+          }}>
+            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>7. Contact Information</h2>
+            <p style={{ lineHeight: "1.6" }}>
+              If you have any questions about this Privacy Policy, you can reach us at:
+              <br />
+              <strong style={{ color: "#6366f1" }}>pocketmoneystudents@gmail.com</strong>
+            </p>
+          </section>
+
         </div>
       </div>
     </div>
-  );
+  )
 }
