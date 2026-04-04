@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
         html: `
           <!DOCTYPE html>
           <html>
-          <body style="font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px;">
+          <body style="font-family: Arial, sans-serif; background: #f4f4f4; padding: 0px;">
             <div style="max-width: 600px; margin: 0 auto; background: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 15px;">
               
               <div style="text-align: center; margin-bottom: 30px;">

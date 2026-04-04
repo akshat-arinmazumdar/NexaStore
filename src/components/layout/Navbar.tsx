@@ -48,6 +48,8 @@ const Navbar = () => {
     { name: "Home", href: "/", protected: false },
     { name: "Shop", href: "/shop", protected: true },
     { name: "Custom Project", href: "/custom-project", protected: true },
+    { name: "AI Models", href: "#", comingSoon: true },
+    { name: "Mobile Apps", href: "#", comingSoon: true },
     { name: "About", href: "/#about", protected: false },
   ];
 
@@ -104,17 +106,24 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link)}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-indigo-400",
-                pathname === link.href ? "text-indigo-400" : "text-slate-300"
-              )}
-            >
-              {link.name}
-            </Link>
+            link.comingSoon ? (
+              <div key={link.name} className="flex items-center gap-2 text-slate-500 opacity-70 cursor-not-allowed">
+                <span className="text-sm font-medium">{link.name}</span>
+                <span className="bg-[#f59e0b] text-white text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-tighter">Soon</span>
+              </div>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link)}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-indigo-400",
+                  pathname === link.href ? "text-indigo-400" : "text-slate-300"
+                )}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
         </div>
 
@@ -245,20 +254,27 @@ const Navbar = () => {
 
               <div className="flex flex-col gap-6">
                 {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link)}
-                    className="flex items-center justify-between group"
-                  >
-                    <span className={cn(
-                      "text-lg font-medium",
-                      pathname === link.href ? "text-indigo-400" : "text-slate-300"
-                    )}>
-                      {link.name}
-                    </span>
-                    <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-indigo-400 transition-colors" />
-                  </Link>
+                  link.comingSoon ? (
+                    <div key={link.name} className="flex items-center justify-between text-slate-500 opacity-60">
+                      <span className="text-lg font-medium">{link.name}</span>
+                      <span className="bg-[#f59e0b] text-white text-[10px] px-2 py-1 rounded font-bold uppercase tracking-widest">Coming Soon</span>
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link)}
+                      className="flex items-center justify-between group"
+                    >
+                      <span className={cn(
+                        "text-lg font-medium",
+                        pathname === link.href ? "text-indigo-400" : "text-slate-300"
+                      )}>
+                        {link.name}
+                      </span>
+                      <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-indigo-400 transition-colors" />
+                    </Link>
+                  )
                 ))}
               </div>
 

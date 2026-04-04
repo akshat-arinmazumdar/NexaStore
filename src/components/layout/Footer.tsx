@@ -21,8 +21,6 @@ const Footer = () => {
       title: "Company",
       links: [
         { name: "About Us", href: "/about" },
-        { name: "Careers", href: "/careers" },
-        { name: "Blog", href: "/blog" },
         { name: "Contact", href: "/contact" },
       ],
     },
@@ -30,17 +28,16 @@ const Footer = () => {
       title: "Marketplace",
       links: [
         { name: "All Products", href: "/shop" },
-        { name: "AI Models", href: "/shop?category=ai" },
-        { name: "Mobile Apps", href: "/shop?category=mobile" },
-        { name: "Websites", href: "/shop?category=web" },
+        { name: "AI Models", href: "#", comingSoon: true },
+        { name: "Mobile Apps", href: "#", comingSoon: true },
       ],
     },
     {
       title: "Support",
       links: [
-        { name: "Documentation", href: "/docs" },
-        { name: "Sellers Guide", href: "/sellers" },
-        { name: "Privacy Policy", href: "/privacy" },
+        { name: "Documentation", href: "#", comingSoon: true },
+        { name: "Sellers Guide", href: "#", comingSoon: true },
+        { name: "Privacy Policy", href: "/privacy-policy" },
         { name: "Terms of Service", href: "/terms" },
       ],
     },
@@ -90,14 +87,21 @@ const Footer = () => {
             <h4 className="text-white font-bold text-lg">{column.title}</h4>
             <div className="flex flex-col gap-4">
               {column.links.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-slate-400 hover:text-indigo-400 transition-colors flex items-center group"
-                >
-                  <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                  {link.name}
-                </Link>
+                link.comingSoon ? (
+                  <div key={link.name} className="text-slate-600 flex items-center cursor-not-allowed opacity-70">
+                    <span className="text-sm">{link.name}</span>
+                    <span className="ml-2 text-[8px] bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded border border-white/5 font-bold uppercase tracking-widest">Soon</span>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="text-slate-400 hover:text-indigo-400 transition-colors flex items-center group"
+                  >
+                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    {link.name}
+                  </Link>
+                )
               ))}
             </div>
           </div>
