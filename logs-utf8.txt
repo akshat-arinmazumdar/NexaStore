@@ -1,0 +1,25 @@
+﻿
+> nexastore@0.1.0 dev
+> next dev
+
+node.exe :  ΓÜá Port 3000 is in use, 
+trying 3001 instead.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" "C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpec 
+   ified: ( ΓÜá Port 3000 ...g 3001   
+  instead.:String) [], RemoteExcept   
+ ion
+    + FullyQualifiedErrorId : NativeC 
+   ommandError
+ 
+  Γû▓ Next.js 14.2.23
+  - Local:        http://localhost:3001
+  - Environments: .env
+
+ Γ£ô Starting...
+ Γ£ô Ready in 2.7s

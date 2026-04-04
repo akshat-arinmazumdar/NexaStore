@@ -3,16 +3,27 @@ export const revalidate = 0
 
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { razorpay } from "@/lib/razorpay";
 
 export async function POST(request: Request) {
   try {
-    console.log("RAZORPAY_KEY_ID:", process.env.RAZORPAY_KEY_ID);
-    console.log("RAZORPAY_KEY_SECRET exists:", !!process.env.RAZORPAY_KEY_SECRET);
-    const session = await getServerSession(authOptions);
+    const key_id = process.env.RAZORPAY_KEY_ID;
+    const key_secret = process.env.RAZORPAY_KEY_SECRET;
+    
+    console.log("RAZORPAY_KEY_ID:", key_id);
+    console.log("RAZORPAY_KEY_SECRET exists:", !!key_secret);
+
+    if (!key_id || !key_secret) {
+      return NextResponse.json(
+        { error: "Razorpay keys missing from configuration" },
+        { status: 500 }
+      );
+    }
+
+    const session = await auth();
     console.log("SESSION DEBUG:", JSON.stringify(session));
 
     if (!session || !session.user || !session.user.email) {
@@ -64,10 +75,14 @@ export async function POST(request: Request) {
       currency: razorpayOrder.currency,
       keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Create Order Error:", error);
     return NextResponse.json(
-      { error: "Failed to create payment order" },
+      { 
+        error: "Failed to create payment order",
+        details: error?.message || "Unknown error",
+        stack: error?.stack 
+      },
       { status: 500 }
     );
   }
