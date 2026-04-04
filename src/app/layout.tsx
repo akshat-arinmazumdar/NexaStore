@@ -27,6 +27,8 @@ export const metadata: Metadata = {
 import AuthProvider from "@/components/providers/AuthProvider";
 import ConsoleErrorSuppressor from "@/components/providers/ConsoleErrorSuppressor";
 
+import { Toaster } from "react-hot-toast";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,6 +39,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased font-sans`}
       >
+        <Toaster position="top-right" reverseOrder={false} />
         <ConsoleErrorSuppressor>
           <AuthProvider>{children}</AuthProvider>
         </ConsoleErrorSuppressor>

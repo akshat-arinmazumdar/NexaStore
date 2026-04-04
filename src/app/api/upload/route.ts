@@ -4,7 +4,14 @@ export const revalidate = 0
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
+import { v2 as cloudinary } from "cloudinary";
 import { uploadImage } from "@/lib/cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const rateLimitMap = new Map<string, { count: number, timestamp: number }>();
 const LIMIT = 10;

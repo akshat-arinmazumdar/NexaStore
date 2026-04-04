@@ -3,17 +3,19 @@
 
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Save, Loader2, CheckCircle2, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ImageUpload } from "@/components/admin/ImageUpload";
+import { toast } from "react-hot-toast";
 
 export default function NewProductPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
   
   const [formData, setFormData] = useState({
     name: "",
@@ -28,6 +30,49 @@ export default function NewProductPage() {
     images: [] as string[],
     downloadUrl: "",
   });
+
+  // 1. Save draft to localStorage every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      localStorage.setItem('product_draft', JSON.stringify(formData))
+      setLastSaved(new Date());
+      console.log('Draft saved!')
+    }, 30000)
+    return () => clearInterval(interval)
+  }, [formData])
+
+  // 2. Load draft on page open
+  useEffect(() => {
+    const draft = localStorage.getItem('product_draft')
+    if (draft) {
+      try {
+        const parsed = JSON.parse(draft)
+        setFormData(parsed)
+        toast.success('Draft restored!')
+      } catch (err) {
+        console.error("Failed to parse draft:", err);
+      }
+    }
+  }, [])
+
+  const clearDraft = () => {
+    localStorage.removeItem('product_draft');
+    setLastSaved(null);
+    toast.success('Draft cleared!');
+    setFormData({
+      name: "",
+      description: "",
+      price: "",
+      category: "SAAS_TOOL",
+      techStack: "",
+      features: "",
+      isFeatured: false,
+      badge: "",
+      demoUrl: "",
+      images: [] as string[],
+      downloadUrl: "",
+    });
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -71,6 +116,10 @@ export default function NewProductPage() {
         throw new Error(data.error || "Failed to create product");
       }
 
+      // 3. Clear draft after successful submit
+      localStorage.removeItem('product_draft');
+      toast.success('Product created and draft cleared!');
+
       router.push("/admin/products");
     } catch (err: any) {
       setError(err.message);
@@ -80,13 +129,36 @@ export default function NewProductPage() {
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
-      <div className="flex items-center gap-4">
-        <Link href="/admin/products" className="p-2 glass rounded-xl text-slate-400 hover:text-white transition-colors">
-          <ArrowLeft className="w-5 h-5" />
-        </Link>
-        <div>
-          <h1 className="text-3xl font-display font-bold text-white mb-2">Add New Product</h1>
-          <p className="text-slate-400 text-sm">Create a new digital asset for the marketplace.</p>
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Link href="/admin/products" className="p-2 glass rounded-xl text-slate-400 hover:text-white transition-colors">
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
+          <div>
+            <h1 className="text-3xl font-display font-bold text-white mb-2">Add New Product</h1>
+            <p className="text-slate-400 text-sm">Create a new digital asset for the marketplace.</p>
+          </div>
+        </div>
+
+        {/* 4. Draft save indicator and 5. Clear button */}
+        <div className="flex items-center gap-4">
+          {lastSaved && (
+            <div className="text-right hidden md:block">
+              <div className="flex items-center gap-2 text-green-400 text-xs font-bold uppercase tracking-wider">
+                <CheckCircle2 className="w-3 h-3" /> Draft Saved
+              </div>
+              <div className="text-[10px] text-slate-500 font-mono">
+                Last at: {lastSaved.toLocaleTimeString()}
+              </div>
+            </div>
+          )}
+          <button 
+            type="button"
+            onClick={clearDraft}
+            className="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-xl text-xs font-bold transition-all border border-red-500/20"
+          >
+            <Trash2 className="w-4 h-4" /> Clear Draft
+          </button>
         </div>
       </div>
 
