@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import AddToCartButton from "@/components/shop/AddToCartButton";
+import ReviewSection from "@/components/reviews/ReviewSection";
 
 const prisma = new PrismaClient();
 
@@ -39,7 +40,7 @@ export default async function ProductDetailPage({
 }) {
   const product = await prisma.product.findUnique({
     where: { slug: params.slug },
-    include: { reviews: true } // just in case
+    include: { reviews: true }
   });
 
   if (!product) {
@@ -82,7 +83,7 @@ export default async function ProductDetailPage({
             <div className="space-y-4 mb-8">
                <h3 className="text-white font-bold text-lg">Features</h3>
                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                 {product.features.map((feature, i) => (
+                 {product.features.map((feature: string, i: number) => (
                    <li key={i} className="flex items-center gap-2 text-slate-300 text-sm">
                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
                      {feature}
@@ -94,7 +95,7 @@ export default async function ProductDetailPage({
             <div className="space-y-4 mb-10">
                <h3 className="text-white font-bold text-lg">Tech Stack</h3>
                <div className="flex flex-wrap gap-2">
-                 {product.techStack.map((tech, i) => (
+                 {product.techStack.map((tech: string, i: number) => (
                    <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300 font-mono">
                      {tech}
                    </span>
@@ -112,6 +113,11 @@ export default async function ProductDetailPage({
               }}
             />
           </div>
+        </div>
+
+        {/* REVIEW SECTION */}
+        <div className="mt-20 border-t border-white/5 pt-20">
+          <ReviewSection productId={product.id} />
         </div>
       </div>
       <Footer />

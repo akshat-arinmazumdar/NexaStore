@@ -46,6 +46,7 @@ export async function GET(request: Request) {
         price: true,
         originalPrice: true,
         rating: true,
+        totalReviews: true,
         images: true,
         isFeatured: true,
         isActive: true,

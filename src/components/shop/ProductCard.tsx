@@ -27,6 +27,7 @@ interface ProductCardProps {
   price: number;
   originalPrice?: number;
   rating: number;
+  totalReviews: number;
   image: string;
   isFeatured?: boolean;
 }
@@ -40,6 +41,7 @@ const ProductCard = ({
   price,
   originalPrice,
   rating,
+  totalReviews,
   image,
   isFeatured,
 }: ProductCardProps) => {
@@ -126,9 +128,10 @@ const ProductCard = ({
           >
             {name}
           </Link>
-          <div className="flex items-center gap-1">
-             <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
-             <span className="text-slate-400 text-sm font-bold">{rating}</span>
+          <div className="flex items-center gap-1.5 bg-yellow-500/10 px-2 py-1 rounded-lg border border-yellow-500/20">
+             <Star className="w-3 h-3 fill-yellow-500 text-yellow-500" />
+             <span className="text-yellow-500 text-xs font-bold leading-none">{rating.toFixed(1)}</span>
+             <span className="text-slate-500 text-[10px] leading-none">({totalReviews})</span>
           </div>
         </div>
         <p className="text-slate-400 text-sm line-clamp-2 mb-6 h-10">

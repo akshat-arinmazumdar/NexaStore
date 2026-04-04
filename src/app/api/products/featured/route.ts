@@ -27,6 +27,7 @@ export async function GET() {
         price: true,
         originalPrice: true,
         rating: true,
+        totalReviews: true,
         images: true,
         isFeatured: true,
         isActive: true,
