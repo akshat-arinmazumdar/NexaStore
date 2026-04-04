@@ -1,67 +1,71 @@
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
+export const dynamic = "force-dynamic"
+export const runtime = "nodejs"
 
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/auth";
-import { prisma } from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server"
+import { auth } from "@/auth"
+import { prisma } from "@/lib/prisma"
+
+function convertToDirectDownload(url: string): string {
+  // Convert Google Drive share link to direct download
+  // https://drive.google.com/file/d/FILE_ID/view -> direct download
+  const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
+  if (driveMatch) {
+    return `https://drive.google.com/uc?export=download&id=${driveMatch[1]}`
+  }
+  
+  // Already direct link - return as is
+  return url
+}
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { productId: string } }
 ) {
   try {
-    // Check if user is logged in
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ 
-        error: "Please login to download" 
-      }, { status: 401 });
+    const session = await auth()
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Please login" }, { status: 401 })
     }
 
-    // Check if user has PAID for this product (Order status COMPLETED)
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email }
+    })
+
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 })
+    }
+
+    // Verify purchase
     const order = await prisma.order.findFirst({
       where: {
-        userId: session.user.id,
+        userId: user.id,
         status: "COMPLETED",
         items: {
-          some: {
-            productId: params.productId
-          }
+          some: { productId: params.productId }
         }
       }
-    });
+    })
 
     if (!order) {
-      return NextResponse.json({ 
-        error: "Purchase required to download" 
-      }, { status: 403 });
+      return NextResponse.json({ error: "Purchase required" }, { status: 403 })
     }
 
-    // Get product download URL
     const product = await prisma.product.findUnique({
       where: { id: params.productId },
       select: { downloadUrl: true, name: true }
-    });
+    })
 
     if (!product?.downloadUrl) {
-      return NextResponse.json({ 
-        error: "Download not available for this product" 
-      }, { status: 404 });
+      return NextResponse.json({ error: "Download not available" }, { status: 404 })
     }
 
-    // Log download (optional but good for tracking)
-    console.log(`Download: User ${session.user.email} downloaded ${product.name}`);
-
-    // Return secure download URL
-    return NextResponse.json({ 
-      downloadUrl: product.downloadUrl,
-      productName: product.name
-    });
-
+    // Convert to direct download URL
+    const directUrl = convertToDirectDownload(product.downloadUrl)
+    
+    // Redirect directly to download
+    return NextResponse.redirect(directUrl)
   } catch (error) {
-    console.error("Download API Error:", error);
-    return NextResponse.json({ 
-      error: "An unexpected server error occurred during download" 
-    }, { status: 500 });
+    console.error("DOWNLOAD_ERROR", error)
+    return NextResponse.json({ error: "Server error" }, { status: 500 })
   }
 }
