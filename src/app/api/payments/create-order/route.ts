@@ -3,18 +3,21 @@ export const revalidate = 0
 
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { razorpay } from "@/lib/razorpay";
 
 export async function POST(request: Request) {
   try {
-    const session = await auth();
-    console.log("Session:", JSON.stringify(session));
+    const session = await getServerSession(authOptions);
+    console.log("SESSION DEBUG:", JSON.stringify(session));
 
-    if (!session || !session.user || !(session.user as any).id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session || !session.user || !session.user.email) {
+      return NextResponse.json(
+        { error: "Unauthorized - Please login first" },
+        { status: 401 }
+      );
     }
 
     const body = await request.json();
