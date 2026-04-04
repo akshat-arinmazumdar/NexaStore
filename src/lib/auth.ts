@@ -66,6 +66,11 @@ export const authOptions: NextAuthConfig = {
     }),
   ],
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      if (url.startsWith(baseUrl)) return url;
+      return baseUrl + "/dashboard";
+    },
     async signIn({ user, account }) {
       if (account?.provider === "google") {
         const { prisma } = await import("@/lib/prisma");
