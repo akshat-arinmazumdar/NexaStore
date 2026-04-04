@@ -204,7 +204,7 @@ const RegisterPage = () => {
                         onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
                         className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border border-white/5 hover:border-indigo-500/50 transition-all shadow-xl"
                       >
-                         <Globe className="w-4 h-4 text-blue-400" /> Google
+                         <Globe className="w-4 h-4 text-blue-400" /> Continue with Google
                       </button>
                       <button 
                         type="button" 
