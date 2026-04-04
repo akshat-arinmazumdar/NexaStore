@@ -10,6 +10,8 @@ import { razorpay } from "@/lib/razorpay";
 
 export async function POST(request: Request) {
   try {
+    console.log("RAZORPAY_KEY_ID:", process.env.RAZORPAY_KEY_ID);
+    console.log("RAZORPAY_KEY_SECRET exists:", !!process.env.RAZORPAY_KEY_SECRET);
     const session = await getServerSession(authOptions);
     console.log("SESSION DEBUG:", JSON.stringify(session));
 
