@@ -1,4 +1,5 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import GoogleProvider from "next-auth/providers/google";
 import { type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
@@ -17,6 +18,18 @@ export const authOptions: NextAuthConfig = {
   },
   debug: false,
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      allowDangerousEmailAccountLinking: true,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
     Credentials({
       name: "credentials",
       credentials: {
@@ -61,6 +74,28 @@ export const authOptions: NextAuthConfig = {
       return baseUrl + "/dashboard";
     },
     async signIn({ user, account }) {
+      if (account?.provider === "google") {
+        // Check if user exists
+        const existingUser = await prisma.user.findUnique({
+          where: { email: user.email! },
+        });
+
+        if (existingUser) {
+          // Link Google account to existing user
+          return true;
+        }
+
+        // Create new user with USER role (never ADMIN)
+        await prisma.user.create({
+          data: {
+            email: user.email!,
+            name: user.name || "User",
+            role: "USER" as Role, // Using explicit cast to match prisma enum
+            password: null,
+          },
+        });
+        return true;
+      }
       return true;
     },
     async jwt({ token, user }) {

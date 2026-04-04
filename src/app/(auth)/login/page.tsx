@@ -22,9 +22,13 @@ import {
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const LoginPage = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -32,9 +36,12 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  
-  const router = useRouter();
-  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dashboard");
+    }
+  }, [status, router]);
 
   useEffect(() => {
     if (searchParams.get("registered")) {
@@ -66,6 +73,18 @@ const LoginPage = () => {
       setLoading(false);
     }
   };
+
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen bg-[#0F172A] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-indigo-500 animate-spin" />
+      </div>
+    );
+  }
+
+  if (status === "authenticated") {
+    return null;
+  }
 
   return (
     <main className="min-h-screen bg-[#0F172A] pt-40 pb-20 relative overflow-hidden flex flex-col items-center justify-center">
@@ -194,8 +213,31 @@ const LoginPage = () => {
                      <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                   </button>
 
-                  <div className="pt-8 text-center text-[10px] font-bold text-slate-600 uppercase tracking-widest bg-white/5 p-4 rounded-2xl border border-white/5">
-                     Social logins are temporarily disabled
+                  <div className="relative py-4 flex items-center gap-4">
+                     <div className="h-[1px] flex-grow bg-white/5" />
+                     <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">or continue with</span>
+                     <div className="h-[1px] flex-grow bg-white/5" />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                      <button 
+                        type="button"
+                        onClick={() => signIn("google", { callbackUrl: "/dashboard", redirect: true })}
+                        className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border border-white/5 hover:border-indigo-500/50 transition-all shadow-xl"
+                      >
+                         <Globe className="w-4 h-4 text-blue-400" /> Continue with Google
+                      </button>
+                      <button 
+                        type="button" 
+                        onClick={() => signIn("github", { callbackUrl: "/dashboard", redirect: true })} 
+                        className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border border-white/5 hover:border-slate-400 transition-all shadow-xl"
+                      >
+                         <Code2 className="w-4 h-4" /> Github
+                      </button>
+                   </div>
+
+                  <div className="pt-8 text-center text-[10px] font-bold text-slate-600 uppercase tracking-widest opacity-50">
+                     Protected Secure Login
                   </div>
 
                   <div className="pt-4 text-center">
