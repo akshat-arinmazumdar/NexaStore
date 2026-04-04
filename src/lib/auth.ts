@@ -16,6 +16,7 @@ export const authOptions: NextAuthConfig = {
   pages: {
     signIn: "/login",
   },
+  debug: true,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -74,8 +75,6 @@ export const authOptions: NextAuthConfig = {
     },
     async signIn({ user, account }) {
       if (account?.provider === "google") {
-        const { prisma } = await import("@/lib/prisma");
-
         // Check if user exists
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email! },
@@ -91,7 +90,7 @@ export const authOptions: NextAuthConfig = {
           data: {
             email: user.email!,
             name: user.name || "User",
-            role: "USER", // Always USER for new Google signups
+            role: "USER" as Role, // Using explicit cast to match prisma enum
             password: null,
           },
         });
@@ -101,7 +100,6 @@ export const authOptions: NextAuthConfig = {
     },
     async jwt({ token, user }) {
       if (token.email) {
-        const { prisma } = await import("@/lib/prisma");
         const dbUser = await prisma.user.findUnique({
           where: { email: token.email },
         });
