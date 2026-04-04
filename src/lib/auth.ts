@@ -66,10 +66,40 @@ export const authOptions: NextAuthConfig = {
     }),
   ],
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === "google") {
+        const { prisma } = await import("@/lib/prisma");
+
+        // Check if user exists
+        const existingUser = await prisma.user.findUnique({
+          where: { email: user.email! },
+        });
+
+        if (!existingUser) {
+          // Create new user with USER role (never ADMIN)
+          await prisma.user.create({
+            data: {
+              email: user.email!,
+              name: user.name || "User",
+              role: "USER", // Always USER for new Google signups
+              password: null,
+            },
+          });
+        }
+        return true;
+      }
+      return true;
+    },
     async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = (user as any).role;
+      if (token.email) {
+        const { prisma } = await import("@/lib/prisma");
+        const dbUser = await prisma.user.findUnique({
+          where: { email: token.email },
+        });
+        if (dbUser) {
+          token.role = dbUser.role;
+          token.id = dbUser.id;
+        }
       }
       return token;
     },
