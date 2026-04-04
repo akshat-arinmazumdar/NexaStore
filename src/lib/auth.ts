@@ -20,6 +20,7 @@ export const authOptions: NextAuthConfig = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      allowDangerousEmailAccountLinking: true,
       authorization: {
         params: {
           prompt: "consent",
@@ -80,17 +81,20 @@ export const authOptions: NextAuthConfig = {
           where: { email: user.email! },
         });
 
-        if (!existingUser) {
-          // Create new user with USER role (never ADMIN)
-          await prisma.user.create({
-            data: {
-              email: user.email!,
-              name: user.name || "User",
-              role: "USER", // Always USER for new Google signups
-              password: null,
-            },
-          });
+        if (existingUser) {
+          // Link Google account to existing user
+          return true;
         }
+
+        // Create new user with USER role (never ADMIN)
+        await prisma.user.create({
+          data: {
+            email: user.email!,
+            name: user.name || "User",
+            role: "USER", // Always USER for new Google signups
+            password: null,
+          },
+        });
         return true;
       }
       return true;
