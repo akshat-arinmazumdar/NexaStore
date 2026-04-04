@@ -2,18 +2,21 @@
 
 import React, { useState, useCallback } from 'react';
 import Image from 'next/image';
-import { Upload, X, Loader2, Image as ImageIcon } from 'lucide-react';
+import { Upload, X, Loader2, Plus } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ImageUploadProps {
-  value: string;
-  onChange: (url: string) => void;
+  values: string[];
+  onChange: (urls: string[]) => void;
   onRemove: (url: string) => void;
+  maxImages?: number;
 }
 
 export const ImageUpload: React.FC<ImageUploadProps> = ({
-  value,
+  values,
   onChange,
-  onRemove
+  onRemove,
+  maxImages = 5
 }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -21,122 +24,122 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
 
   const handleUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     setUploadError("");
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
 
-    // Validate file type and size
-    const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
-    if (!validTypes.includes(file.type)) {
-      setUploadError('Please upload a JPG, PNG, or WebP image.');
-      return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      setUploadError('File size must be less than 5MB.');
+    if (values.length + files.length > maxImages) {
+      setUploadError(`You can only upload up to ${maxImages} images.`);
       return;
     }
 
     setIsUploading(true);
-    setProgress(10);
+    setProgress(0);
 
-    const formData = new FormData();
-    formData.append('file', file);
-
+    const uploadedUrls: string[] = [];
+    
     try {
-        // Simulate progress for better UX
-        const interval = setInterval(() => {
-          setProgress(prev => (prev < 90 ? prev + 10 : prev));
-        }, 300);
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // Validate
+        const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!validTypes.includes(file.type)) {
+          throw new Error('Please upload JPG, PNG, or WebP images.');
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          throw new Error('File size must be less than 5MB.');
+        }
 
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
+        const formData = new FormData();
+        formData.append('file', file);
 
-      clearInterval(interval);
-      setProgress(100);
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
 
-      const data = await response.json();
-      
-      if (data.url) {
-        onChange(data.url);
-      } else {
-        throw new Error(data.error || 'Upload failed');
+        const data = await response.json();
+        if (data.url) {
+          uploadedUrls.push(data.url);
+          setProgress(Math.round(((i + 1) / files.length) * 100));
+        } else {
+          throw new Error(data.error || 'Upload failed');
+        }
       }
+      
+      onChange([...values, ...uploadedUrls]);
     } catch (error: any) {
       console.error('Upload Error:', error);
-      setUploadError(error.message || 'Failed to upload image. Please try again.');
+      setUploadError(error.message || 'Failed to upload images.');
     } finally {
       setTimeout(() => {
         setIsUploading(false);
         setProgress(0);
       }, 500);
     }
-  }, [onChange]);
+  }, [values, onChange, maxImages]);
 
   return (
     <div className="space-y-4 w-full">
-      <div className="flex items-center gap-4">
-        {value ? (
-          <div className="relative w-[200px] h-[200px] rounded-xl overflow-hidden shadow-2xl border-2 border-indigo-500/20 group transition-all duration-300 hover:scale-[1.02]">
-            <div className="absolute top-2 right-2 z-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <AnimatePresence>
+          {values.map((url) => (
+            <motion.div
+              layout
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              key={url}
+              className="relative aspect-square rounded-xl overflow-hidden shadow-lg border border-white/10 group bg-[#1E293B]"
+            >
+              <Image
+                fill
+                className="object-cover transition-transform group-hover:scale-110"
+                alt="Product"
+                src={url}
+              />
               <button
                 type="button"
-                onClick={() => onRemove(value)}
-                className="p-1.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors shadow-lg backdrop-blur-sm"
+                onClick={() => onRemove(url)}
+                className="absolute top-2 right-2 p-1.5 bg-red-500/80 backdrop-blur-sm text-white rounded-full hover:bg-red-600 transition-colors z-10 opacity-0 group-hover:opacity-100"
               >
                 <X className="w-4 h-4" />
               </button>
-            </div>
-            <Image
-              fill
-              className="object-cover"
-              alt="Product Image"
-              src={value}
-            />
-          </div>
-        ) : (
-          <div className="w-full">
-            <label className="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-indigo-200 rounded-2xl bg-indigo-50/30 hover:bg-indigo-50 transition-all cursor-pointer group overflow-hidden">
-               {isUploading && (
-                  <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center z-20">
-                     <Loader2 className="w-8 h-8 text-indigo-600 animate-spin mb-2" />
-                     <div className="w-48 bg-indigo-100 rounded-full h-2 overflow-hidden">
-                        <div 
-                           className="bg-indigo-600 h-full transition-all duration-300" 
-                           style={{ width: `${progress}%` }}
-                        />
-                     </div>
-                     <span className="text-xs font-semibold text-indigo-600 mt-2">{progress}% Uploading...</span>
-                  </div>
-               )}
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <div className="p-3 bg-indigo-100 rounded-full mb-3 group-hover:scale-110 transition-transform">
-                    <Upload className="w-6 h-6 text-indigo-600" />
-                </div>
-                <p className="mb-2 text-sm text-indigo-700 font-medium">
-                  Click to upload or drag and drop
-                </p>
-                <p className="text-xs text-indigo-400">
-                  JPG, PNG, WebP (MAX. 5MB)
-                </p>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+
+        {values.length < maxImages && (
+          <label className="relative aspect-square flex flex-col items-center justify-center border-2 border-dashed border-white/10 rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer group overflow-hidden">
+            {isUploading ? (
+              <div className="flex flex-col items-center gap-2">
+                <Loader2 className="w-6 h-6 text-indigo-400 animate-spin" />
+                <span className="text-[10px] font-bold text-indigo-400 uppercase">{progress}%</span>
               </div>
-                <input
-                type="file"
-                className="hidden"
-                accept="image/*"
-                onChange={handleUpload}
-                disabled={isUploading}
-              />
-            </label>
-            {uploadError && (
-              <p className="mt-2 text-sm text-red-500 font-medium">
-                {uploadError}
-              </p>
+            ) : (
+              <>
+                <Plus className="w-6 h-6 text-slate-500 group-hover:text-white transition-colors" />
+                <span className="text-[10px] font-bold text-slate-500 uppercase mt-2 group-hover:text-white">Add Photo</span>
+              </>
             )}
-          </div>
+            <input
+              type="file"
+              multiple
+              className="hidden"
+              accept="image/*"
+              onChange={handleUpload}
+              disabled={isUploading}
+            />
+          </label>
         )}
       </div>
+
+      {uploadError && (
+        <p className="text-xs text-red-500 font-bold uppercase tracking-widest">{uploadError}</p>
+      )}
+      <p className="text-[10px] text-slate-500 uppercase tracking-widest">
+        Max {maxImages} images (JPG, PNG, WebP). Drag multiple to upload at once.
+      </p>
     </div>
   );
 };

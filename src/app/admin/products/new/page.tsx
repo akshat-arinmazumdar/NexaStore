@@ -230,11 +230,11 @@ export default function NewProductPage() {
           </div>
 
           <div className="space-y-2 col-span-1 md:col-span-2">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Product Image *</label>
+            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Product Images *</label>
             <ImageUpload 
-              value={formData.images[0] || ""} 
-              onChange={(url) => setFormData({ ...formData, images: [url] })} 
-              onRemove={() => setFormData({ ...formData, images: [] })} 
+              values={formData.images} 
+              onChange={(urls) => setFormData({ ...formData, images: urls })} 
+              onRemove={(url) => setFormData({ ...formData, images: formData.images.filter((img) => img !== url) })} 
             />
           </div>
 

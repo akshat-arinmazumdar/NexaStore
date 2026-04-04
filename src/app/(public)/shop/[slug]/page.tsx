@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+import ProductGallery from "@/components/product/ProductGallery";
+
 export default async function ProductDetailPage({ 
   params 
 }: { 
@@ -55,20 +57,13 @@ export default async function ProductDetailPage({
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Images */}
-          <div className="space-y-6">
-            <div className="relative w-full h-80 md:h-96 rounded-2xl overflow-hidden glass border-white/10">
-               <Image 
-                  src={product.images?.[0] || "/images/placeholder.png"} 
-                  alt={product.name} 
-                  fill 
-                  className="object-cover" 
-               />
-               {product.badge && (
-                  <span className="absolute top-4 left-4 text-xs font-bold font-mono uppercase px-3 py-1 bg-indigo-500 text-white rounded-md">
-                     {product.badge}
-                  </span>
-               )}
-            </div>
+          <div className="relative group">
+            <ProductGallery images={product.images} productName={product.name} />
+            {product.badge && (
+               <span className="absolute top-4 left-4 text-[10px] font-bold font-mono uppercase px-3 py-1 bg-indigo-500 text-white rounded-md shadow-xl skew-x-[-12deg] z-20">
+                  {product.badge}
+               </span>
+            )}
           </div>
 
           {/* Details */}
