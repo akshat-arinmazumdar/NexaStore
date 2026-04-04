@@ -1,141 +1,122 @@
-export const dynamic = "force-dynamic"
+"use client";
+
+import React from "react";
+import { ArrowLeft, Scale, ShoppingCart, UserCheck, AlertCircle, MapPin, Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function TermsOfService() {
+  const router = useRouter();
+  const lastUpdated = "April 2026";
+
   return (
-    <div style={{
-      minHeight: "100vh",
-      background: "#0f0f1a",
-      color: "#e2e8f0",
-      padding: "120px 20px 80px"
-    }}>
-      <div style={{
-        maxWidth: "800px",
-        margin: "0 auto"
-      }}>
-        <h1 style={{ color: "#6366f1", fontSize: "3rem", fontWeight: "bold" }}>Terms of Service</h1>
-        <p style={{ color: "#6b7280", marginBottom: "40px" }}>Last Updated: April 2026</p>
-        
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>1. Acceptance of Terms</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              By accessing and using NexaStore, you accept and agree to be bound by the terms and provisions 
-              of this agreement.
-            </p>
-          </section>
+    <div className="min-h-screen bg-[#0F172A] pt-32 pb-20 px-6">
+      <div className="max-w-4xl mx-auto font-sans">
+        {/* Back Button */}
+        <button 
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors mb-8 group"
+        >
+          <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-indigo-500/50 group-hover:bg-indigo-500/10 transition-all">
+            <ArrowLeft className="w-4 h-4" />
+          </div>
+          <span className="text-sm font-medium">Go Back</span>
+        </button>
 
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>2. Digital Products Policy</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              All digital products are provided "as is." <strong>All sales are final</strong>. 
-              No refunds will be granted once the product has been downloaded or access has been provided. 
-              The product license is non-transferable.
-            </p>
-          </section>
+        {/* Main Content Container */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-[#1a1a2e]/50 backdrop-blur-xl border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/50"
+        >
+          {/* Header Section */}
+          <div className="p-8 md:p-12 border-b border-white/5 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent">
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+              Terms <span className="text-indigo-500">Of Service</span>
+            </h1>
+            <div className="flex items-center gap-4 text-slate-400 text-sm">
+              <span>Agreement for Use of NexaStore Platform</span>
+              <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+              <span>Last Updated: {lastUpdated}</span>
+            </div>
+          </div>
 
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>3. User Accounts</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              Users are required to provide accurate information during registration and are responsible 
-              for maintaining the security of their account credentials.
-            </p>
-          </section>
+          {/* Policy Body */}
+          <div className="p-8 md:p-12 space-y-12">
+            <section className="space-y-4">
+              <div className="flex items-center gap-3 text-indigo-400 mb-2">
+                <Scale className="w-5 h-5" />
+                <h2 className="text-xl font-bold text-white">1. Acceptance of Terms</h2>
+              </div>
+              <p className="text-slate-400 leading-relaxed pl-8">
+                By accessing and using NexaStore, you accept and agree to be bound by the terms and provisions 
+                of this agreement. If you do not agree to these terms, you should not access or use the marketplace.
+              </p>
+            </section>
 
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>4. Payment Terms</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              All payments are processed securely via <strong>Razorpay</strong>. 
-              All product prices are listed in INR (Indian Rupee) unless otherwise specified.
-            </p>
-          </section>
+            <section className="space-y-4">
+              <div className="flex items-center gap-3 text-indigo-400 mb-2">
+                <ShoppingCart className="w-5 h-5" />
+                <h2 className="text-xl font-bold text-white">2. Digital Products Policy</h2>
+              </div>
+              <div className="text-slate-400 leading-relaxed pl-8 space-y-3">
+                <p>NexaStore products (Websites, AI Models, Mobile Apps) are sold as digital assets:</p>
+                <ul className="list-disc pl-5 space-y-2 text-slate-300">
+                  <li><strong>All sales are final</strong>. Refunds are not issued for any digital products after download or access has been provided.</li>
+                  <li><strong>License</strong>: Every purchase grants a limited license for use within your 프로젝트. License is non-transferable.</li>
+                  <li><strong>Redistribution</strong>: Strict prohibition on unauthorized reselling or redistribution of source code.</li>
+                </ul>
+              </div>
+            </section>
 
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>5. Intellectual Property</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              NexaStore products are <strong>licensed, not sold</strong>. You are granted a limited license 
-              to use the product within your own projects. No redistribution or unauthorized sharing is allowed.
-            </p>
-          </section>
+            <section className="space-y-4">
+              <div className="flex items-center gap-3 text-indigo-400 mb-2">
+                <UserCheck className="w-5 h-5" />
+                <h2 className="text-xl font-bold text-white">3. User Accounts</h2>
+              </div>
+              <p className="text-slate-400 leading-relaxed pl-8">
+                Users are required to provide accurate information during registration and are responsible 
+                for maintaining the confidentiality and security of their account credentials. NexaStore 
+                shall not be held liable for any loss resulting from unauthorized account access.
+              </p>
+            </section>
 
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>6. Prohibited Activities</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              Users are strictly prohibited from reselling NexaStore products or sharing access 
-              with unauthorized third parties.
-            </p>
-          </section>
+            <section className="space-y-4">
+              <div className="flex items-center gap-3 text-indigo-400 mb-2">
+                <AlertCircle className="w-5 h-5" />
+                <h2 className="text-xl font-bold text-white">4. Prohibited Activities</h2>
+              </div>
+              <p className="text-slate-400 leading-relaxed pl-8">
+                Users may not engage in reverse engineering, unauthorized API access, reselling, or using NexaStore 
+                for any illegal purpose. Any violation of these terms may result in immediate account termination.
+              </p>
+            </section>
 
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>7. Limitation of Liability</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              NexaStore is not liable for any damages that may occur from the use or inability to use 
-              any of our digital products.
-            </p>
-          </section>
+            <section className="space-y-4">
+              <div className="flex items-center gap-3 text-indigo-400 mb-2">
+                <MapPin className="w-5 h-5" />
+                <h2 className="text-xl font-bold text-white">5. Governing Law (India)</h2>
+              </div>
+              <p className="text-slate-400 leading-relaxed pl-8">
+                These terms shall be governed by and construed in accordance with the laws of <strong>India</strong>. 
+                Any disputes arising from these terms will be subject to the exclusive jurisdiction of the 
+                authorized courts located in India.
+              </p>
+            </section>
 
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>8. Governing Law</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              This agreement is governed by the laws of <strong>India</strong>. 
-              Any disputes will be resolved in the appropriate Indian courts.
-            </p>
-          </section>
-
-          <section style={{ 
-            background: "#1a1a2e", 
-            padding: "25px", 
-            borderRadius: "12px",
-            border: "1px solid #2d2d4e" 
-          }}>
-            <h2 style={{ color: "#6366f1", marginBottom: "15px" }}>9. Contact</h2>
-            <p style={{ lineHeight: "1.6" }}>
-              Reach us at <strong style={{ color: "#6366f1" }}>pocketmoneystudents@gmail.com</strong> for any inquiries.
-            </p>
-          </section>
-
-        </div>
+            <section className="bg-indigo-600/5 border border-indigo-500/10 rounded-2xl p-8 mt-12">
+              <div className="flex items-center gap-3 text-white mb-3">
+                <Mail className="w-5 h-5" />
+                <h2 className="text-lg font-bold">Legal Inquiries</h2>
+              </div>
+              <p className="text-slate-400 text-sm mb-4">For any clarifications on these terms, please contact our legal team.</p>
+              <a href="mailto:pocketmoneystudents@gmail.com" className="text-indigo-400 font-bold hover:text-indigo-300 transition-colors underline decoration-indigo-500/30 underline-offset-4">
+                pocketmoneystudents@gmail.com
+              </a>
+            </section>
+          </div>
+        </motion.div>
       </div>
     </div>
-  )
+  );
 }
