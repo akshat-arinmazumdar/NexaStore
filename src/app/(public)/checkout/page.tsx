@@ -21,6 +21,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 const CheckoutPage = () => {
   const { items, getTotal, clearCart } = useCartStore();
@@ -55,6 +56,13 @@ const CheckoutPage = () => {
     }
   }, [isHydrated, items, router]);
 
+  // 1. Check if user is logged in & 2. if not redirect to login
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push('/login?redirect=/checkout')
+    }
+  }, [status, router])
+
   if (!isMounted || !isHydrated) {
     return (
       <main className="min-h-screen bg-[#0F172A] flex items-center justify-center">
@@ -64,9 +72,11 @@ const CheckoutPage = () => {
   }
 
   const handlePayment = async () => {
-    if (status !== "authenticated") {
-      router.push("/login?callbackUrl=/checkout");
-      return;
+    // 3. In handlePayment function check session
+    if (!session?.user) {
+      toast.error("Please login to continue")
+      router.push('/login')
+      return
     }
 
     setIsProcessing(true);
