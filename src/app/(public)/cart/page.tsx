@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const CartPage = () => {
-  const { items, removeItem, incrementQuantity, decrementQuantity, getTotal } =
+  const { items, removeItem, getTotal } =
     useCartStore();
   const [isMounted, setIsMounted] = useState(false);
   const [couponCode, setCouponCode] = useState("");
@@ -71,37 +71,12 @@ const CartPage = () => {
                        
                        <div className="flex flex-col items-center md:items-end gap-3 shrink-0">
                           <span className="text-2xl font-mono font-bold text-white">
-                            ₹{(item.price * (item.quantity ?? 1)).toFixed(2)}
+                            ₹{item.price.toFixed(2)}
                           </span>
-
-                          <div className="flex items-center gap-3">
-                            <button
-                              type="button"
-                              onClick={() => decrementQuantity(item.id)}
-                              className="w-9 h-9 rounded-xl glass border border-white/10 text-white text-lg font-bold hover:bg-white/5 transition-all"
-                              aria-label="Decrease quantity"
-                            >
-                              -
-                            </button>
-                            <span
-                              className="text-white font-mono font-bold w-10 text-center"
-                              data-testid="cart-quantity"
-                            >
-                              {item.quantity ?? 1}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => incrementQuantity(item.id)}
-                              className="w-9 h-9 rounded-xl glass border border-white/10 text-white text-lg font-bold hover:bg-white/5 transition-all"
-                              aria-label="Increase quantity"
-                            >
-                              +
-                            </button>
-                          </div>
 
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="flex items-center gap-2 text-red-400 hover:text-red-300 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="flex items-center gap-2 text-red-500 hover:text-red-400 text-sm font-bold mt-2 transition-colors"
                           >
                             <Trash2 className="w-4 h-4" /> Remove
                           </button>

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { toast } from "react-hot-toast";
 
 export interface CartItem {
   id: string;
@@ -14,10 +15,8 @@ export type CartItemInput = Omit<CartItem, "quantity">;
 
 interface CartStore {
   items: CartItem[];
-  addItem: (item: CartItemInput) => void;
+  addItem: (item: CartItemInput) => boolean;
   removeItem: (id: string) => void;
-  incrementQuantity: (id: string) => void;
-  decrementQuantity: (id: string) => void;
   clearCart: () => void;
   getTotal: () => number;
 }
@@ -29,47 +28,26 @@ export const useCartStore = create<CartStore>()(
       addItem: (item) => {
         const existing = get().items.find((i) => i.id === item.id);
 
-        // If product already exists in cart, increment quantity.
+        // FIX 1 — Each product can only be added once
         if (existing) {
-          set({
-            items: get().items.map((i) =>
-              i.id === item.id
-                ? { ...i, quantity: (i.quantity ?? 1) + 1 }
-                : i
-            ),
-          });
-          return;
+          toast.error("Already in cart!");
+          return false;
         }
 
         set({
           items: [...get().items, { ...item, quantity: 1 }],
         });
+        toast.success("Added to cart!");
+        return true;
       },
       removeItem: (id) => {
         set({ items: get().items.filter((i) => i.id !== id) });
-      },
-      incrementQuantity: (id) => {
-        set({
-          items: get().items.map((i) =>
-            i.id === id ? { ...i, quantity: (i.quantity ?? 1) + 1 } : i
-          ),
-        });
-      },
-      decrementQuantity: (id) => {
-        set({
-          items: get().items
-            .map((i) => {
-              if (i.id !== id) return i;
-              const nextQty = (i.quantity ?? 1) - 1;
-              return { ...i, quantity: nextQty };
-            })
-            .filter((i) => (i.quantity ?? 1) > 0),
-        });
+        toast.success("Removed from cart");
       },
       clearCart: () => set({ items: [] }),
       getTotal: () =>
         get().items.reduce(
-          (acc, item) => acc + item.price * (item.quantity ?? 1),
+          (acc, item) => acc + item.price,
           0
         ),
     }),
