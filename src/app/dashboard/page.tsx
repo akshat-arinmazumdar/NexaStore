@@ -53,6 +53,7 @@ const DashboardOverview = () => {
               image: item.product.images?.[0] || "/images/placeholder.png",
               version: "v1.0.0",
               productId: item.productId,
+              orderId: order.id,
             }))
           );
           setPurchasedItems(items);
@@ -88,9 +89,19 @@ const DashboardOverview = () => {
     }
   };
 
-  const handleRemove = (id: string) => {
-    if (window.confirm("Are you sure you want to remove this item from your dashboard view?")) {
-      setPurchasedItems(prev => prev.filter(item => item.id !== id));
+  const handleRemove = async (orderId: string, itemId: string) => {
+    if (window.confirm("PERMANENT DELETE? This deletes from the server and you lose item access.")) {
+      try {
+        const res = await fetch(`/api/orders/${orderId}`, { method: 'DELETE' });
+        if (res.ok) {
+           setPurchasedItems(prev => prev.filter(item => item.id !== itemId));
+        } else {
+           const data = await res.json();
+           alert(data.error || "Server deletion failed");
+        }
+      } catch (err) {
+        alert("Deletion failed due to network error");
+      }
     }
   };
 
@@ -219,9 +230,9 @@ const DashboardOverview = () => {
                         )}
 
                         <button 
-                           onClick={() => handleRemove(item.id)}
+                           onClick={() => handleRemove(item.orderId, item.id)}
                            className="p-3 rounded-xl bg-red-500/5 text-red-500 hover:bg-red-500/10 border border-red-500/10 transition-all shrink-0"
-                           title="Remove from list"
+                           title="Permanently remove"
                         >
                            <Trash2 className="w-4 h-4" />
                         </button>

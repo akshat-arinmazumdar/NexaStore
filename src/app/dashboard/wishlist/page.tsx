@@ -93,7 +93,12 @@ const DashWishlistPage = () => {
                              <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-60" />
                              
                              <button 
-                                onClick={() => removeItem(item.id)}
+                                onClick={async () => {
+                                   if (window.confirm("Permanently remove from server wishlist?")) {
+                                      await fetch(`/api/wishlist/${item.id}`, { method: 'DELETE' });
+                                      removeItem(item.id);
+                                   }
+                                }}
                                 className="absolute top-4 right-4 p-2.5 bg-black/40 backdrop-blur-md rounded-full text-white hover:bg-red-500 transition-colors border border-white/10"
                              >
                                 <Trash2 className="w-4 h-4" />

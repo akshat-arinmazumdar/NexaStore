@@ -62,10 +62,20 @@ const DashOrdersPage = () => {
             .finally(() => setLoading(false));
     }, []);
 
-    const handleDelete = (id: string, e: React.MouseEvent) => {
+    const handleDelete = async (id: string, e: React.MouseEvent) => {
         e.stopPropagation();
-        if (window.confirm("Are you sure you want to remove this order from your view?")) {
-            setOrders(prev => prev.filter(order => order.id !== id));
+        if (window.confirm("PERMANENT DELETE? This order will be removed from your server account data.")) {
+            try {
+                const res = await fetch(`/api/orders/${id}`, { method: 'DELETE' });
+                if (res.ok) {
+                    setOrders(prev => prev.filter(order => order.id !== id));
+                } else {
+                    const data = await res.json();
+                    alert(data.error || "Server error during deletion");
+                }
+            } catch (err) {
+                alert("Network error. Could not delete.");
+            }
         }
     };
 
