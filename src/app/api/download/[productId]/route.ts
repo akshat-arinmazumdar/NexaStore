@@ -5,15 +5,11 @@ import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 
-function convertToDirectDownload(url: string): string {
-  // Convert Google Drive share link to direct download
-  // https://drive.google.com/file/d/FILE_ID/view -> direct download
+function getDirectDownloadUrl(url: string): string {
   const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
   if (driveMatch) {
-    return `https://drive.google.com/uc?export=download&id=${driveMatch[1]}`
+    return `https://drive.google.com/uc?export=download&confirm=t&id=${driveMatch[1]}`
   }
-  
-  // Already direct link - return as is
   return url
 }
 
@@ -35,14 +31,11 @@ export async function GET(
       return NextResponse.json({ error: "User not found" }, { status: 404 })
     }
 
-    // Verify purchase
     const order = await prisma.order.findFirst({
       where: {
         userId: user.id,
         status: "COMPLETED",
-        items: {
-          some: { productId: params.productId }
-        }
+        items: { some: { productId: params.productId } }
       }
     })
 
@@ -56,16 +49,44 @@ export async function GET(
     })
 
     if (!product?.downloadUrl) {
-      return NextResponse.json({ error: "Download not available" }, { status: 404 })
+      return NextResponse.json({ error: "No download available" }, { status: 404 })
     }
 
-    // Convert to direct download URL
-    const directUrl = convertToDirectDownload(product.downloadUrl)
+    const directUrl = getDirectDownloadUrl(product.downloadUrl)
+
+    // Fetch the file from Google Drive
+    const fileResponse = await fetch(directUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0'
+      }
+    })
+
+    if (!fileResponse.ok) {
+      // Fallback: redirect to download URL
+      return NextResponse.redirect(directUrl)
+    }
+
+    // Get filename from product name
+    const filename = product.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '-')
+      + '.zip'
+
+    // Stream file directly to user
+    const fileBuffer = await fileResponse.arrayBuffer()
     
-    // Redirect directly to download
-    return NextResponse.redirect(directUrl)
-  } catch (error) {
-    console.error("DOWNLOAD_ERROR", error)
-    return NextResponse.json({ error: "Server error" }, { status: 500 })
+    return new NextResponse(fileBuffer, {
+      headers: {
+        'Content-Type': 'application/octet-stream',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Content-Length': fileBuffer.byteLength.toString(),
+      }
+    })
+
+  } catch (error: any) {
+    console.error("Download error:", error)
+    return NextResponse.json({ 
+      error: "Download failed: " + error.message 
+    }, { status: 500 })
   }
 }
