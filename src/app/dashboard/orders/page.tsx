@@ -19,7 +19,8 @@ import {
   QrCode,
   ArrowUpRight,
   Filter,
-  X
+  X,
+  Trash2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -60,6 +61,13 @@ const DashOrdersPage = () => {
             .catch(err => console.error("Error fetching orders:", err))
             .finally(() => setLoading(false));
     }, []);
+
+    const handleDelete = (id: string, e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (window.confirm("Are you sure you want to remove this order from your view?")) {
+            setOrders(prev => prev.filter(order => order.id !== id));
+        }
+    };
 
     const filteredOrders = orders.filter(order => {
         const matchesSearch = order.id.toLowerCase().includes(search.toLowerCase()) || 
@@ -196,8 +204,17 @@ const DashOrdersPage = () => {
                                                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Total Amount</p>
                                                 <span className="text-2xl font-bold text-white">₹{order.total}</span>
                                             </div>
-                                            <div className={cn("p-2 rounded-lg bg-white/5 transition-transform", expandedId === order.id && "rotate-180")}>
-                                                <ChevronDown className="w-5 h-5 text-slate-500" />
+                                            <div className="flex items-center gap-2">
+                                                <div className={cn("p-2 rounded-lg bg-white/5 transition-transform", expandedId === order.id && "rotate-180")}>
+                                                    <ChevronDown className="w-5 h-5 text-slate-500" />
+                                                </div>
+                                                <button 
+                                                    onClick={(e) => handleDelete(order.id, e)}
+                                                    className="p-3 rounded-xl bg-red-500/5 text-red-500 hover:bg-red-500/10 border border-red-500/10 transition-all shrink-0"
+                                                    title="Remove from view"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
