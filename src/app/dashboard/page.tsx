@@ -48,11 +48,10 @@ const DashboardOverview = () => {
               name: item.product.name,
               category: item.product.category,
               date: new Date(order.createdAt).toLocaleDateString(),
-              status: "Active",
+              orderStatus: order.status,
               image: item.product.images?.[0] || "/images/placeholder.png",
               version: "v1.0.0",
               productId: item.productId,
-              accessLink: item.accessLink || item.product.accessLink
             }))
           );
           setPurchasedItems(items);
@@ -71,7 +70,6 @@ const DashboardOverview = () => {
       const data = await response.json();
       
       if (response.ok && data.downloadUrl) {
-         // Create hidden link and click it for safe download
          const link = document.createElement('a');
          link.href = data.downloadUrl;
          link.setAttribute('download', data.filename || 'download.zip');
@@ -93,6 +91,8 @@ const DashboardOverview = () => {
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const completedItemsCount = purchasedItems.filter(item => item.orderStatus === "COMPLETED").length;
+
   return (
     <div className="flex-grow space-y-10">
        
@@ -103,7 +103,7 @@ const DashboardOverview = () => {
               <LayoutDashboard className="w-8 h-8 text-indigo-500" />
               My Overview
             </h1>
-            <p className="text-slate-400 text-sm">Welcome back! You have {purchasedItems.length} active digital assets.</p>
+            <p className="text-slate-400 text-sm">Welcome back! You have {completedItemsCount} active digital assets.</p>
           </div>
 
           {/* Dashboard Specific Search */}
@@ -121,8 +121,8 @@ const DashboardOverview = () => {
        {/* Quick Stats Grid */}
        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
-            { label: "Active Assets", value: purchasedItems.length.toString(), icon: <Package className="w-5 h-5 text-indigo-400" /> },
-            { label: "Downloads", value: purchasedItems.length.toString(), icon: <Download className="w-5 h-5 text-green-400" /> },
+            { label: "Active Assets", value: completedItemsCount.toString(), icon: <Package className="w-5 h-5 text-indigo-400" /> },
+            { label: "Downloads", value: completedItemsCount.toString(), icon: <Download className="w-5 h-5 text-green-400" /> },
             { label: "Wishlist", value: "8", icon: <Heart className="w-5 h-5 text-red-500" /> },
           ].map((stat, i) => (
             <motion.div 
@@ -171,9 +171,11 @@ const DashboardOverview = () => {
                            <span className="text-[10px] font-bold font-mono uppercase px-2 py-1 bg-white/5 text-slate-400 rounded-md">{item.version}</span>
                            <span className={cn(
                              "text-[10px] font-bold font-mono uppercase px-2 py-1 rounded-md",
-                             item.status === "Active" ? "bg-green-500/10 text-green-400" : "bg-orange-500/10 text-orange-400"
+                             item.orderStatus === "COMPLETED" ? "bg-green-500/10 text-green-400" : 
+                             item.orderStatus === "PENDING" ? "bg-amber-500/10 text-amber-400" : 
+                             "bg-red-500/10 text-red-400"
                            )}>
-                             ● {item.status}
+                             ● {item.orderStatus}
                            </span>
                         </div>
                         <h3 className="text-xl font-bold text-white mb-1">{item.name}</h3>
@@ -183,19 +185,31 @@ const DashboardOverview = () => {
                      </div>
 
                      <div className="flex items-center gap-3 w-full xl:w-auto">
-                        <button className="flex-1 xl:flex-none py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white text-xs font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                           <Code2 className="w-4 h-4" /> Repository
-                        </button>
-                        <button 
-                           onClick={() => handleDownload(item.productId)}
-                           disabled={downloading === item.productId}
-                           className="flex-1 xl:flex-none py-3 px-6 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 disabled:opacity-50">
-                           {downloading === item.productId ? "Downloading..." : (
-                               <>
-                                   <Download className="w-4 h-4" /> Download Files
-                               </>
-                           )}
-                        </button>
+                        {item.orderStatus === "COMPLETED" ? (
+                           <>
+                             <button className="flex-1 xl:flex-none py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white text-xs font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                                <Code2 className="w-4 h-4" /> Repository
+                             </button>
+                             <button 
+                                onClick={() => handleDownload(item.productId)}
+                                disabled={downloading === item.productId}
+                                className="flex-1 xl:flex-none py-3 px-6 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 disabled:opacity-50">
+                                {downloading === item.productId ? "Downloading..." : (
+                                    <>
+                                        <Download className="w-4 h-4" /> Download Files
+                                    </>
+                                )}
+                             </button>
+                           </>
+                        ) : item.orderStatus === "PENDING" ? (
+                           <div className="flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400 text-xs font-bold">
+                              <Clock className="w-4 h-4" /> Payment Pending
+                           </div>
+                        ) : (
+                           <div className="flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-bold">
+                              <Package className="w-4 h-4 text-red-400" /> Payment Failed
+                           </div>
+                        )}
                       </div>
                   </motion.div>
                 ))
