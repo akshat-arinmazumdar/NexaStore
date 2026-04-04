@@ -106,8 +106,13 @@ const SuccessContent = () => {
                     <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
                       Thank you for choosing NexaStore. Your order <span className="text-indigo-400 font-mono font-bold">#{orderId?.slice(-8).toUpperCase()}</span> has been processed successfully.
                     </p>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-[10px] font-bold uppercase tracking-widest mt-4">
-                        Redirecting to dashboard in {countdown}s
+                    <p className="text-green-400 font-bold text-sm bg-green-400/10 py-3 px-6 rounded-2xl border border-green-400/20 inline-block mt-4">
+                      ✅ Your secure download link is now available in your Dashboard!
+                    </p>
+                    <div className="block mt-6">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-[10px] font-bold uppercase tracking-widest">
+                          Redirecting to dashboard in {countdown}s
+                      </div>
                     </div>
                  </motion.div>
             </div>

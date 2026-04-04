@@ -16,7 +16,8 @@ const productSchema = z.object({
   demoUrl: z.string().optional().nullable(),
   badge: z.string().optional().nullable(),
   isFeatured: z.boolean().optional(),
-  accessLink: z.string().optional()
+  accessLink: z.string().optional(),
+  downloadUrl: z.string().min(1, "Download URL is required")
 });
 
 export async function GET(req: NextRequest) {
@@ -93,6 +94,7 @@ export async function POST(req: NextRequest) {
         images: data.images,
         longDesc: data.description || "",
         accessLink: data.accessLink || "",
+        downloadUrl: data.downloadUrl || "",
       },
     });
 

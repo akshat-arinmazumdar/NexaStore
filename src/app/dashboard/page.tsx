@@ -28,6 +28,7 @@ const DashboardOverview = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [purchasedItems, setPurchasedItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [downloading, setDownloading] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -50,6 +51,7 @@ const DashboardOverview = () => {
               status: "Active",
               image: item.product.images?.[0] || "/images/placeholder.png",
               version: "v1.0.0",
+              productId: item.productId,
               accessLink: item.accessLink || item.product.accessLink
             }))
           );
@@ -63,6 +65,24 @@ const DashboardOverview = () => {
         .finally(() => setLoading(false));
     }
   }, [status, router]);
+  
+  const handleDownload = async (productId: string) => {
+    setDownloading(productId);
+    try {
+      const response = await fetch(`/api/download/${productId}`);
+      const data = await response.json();
+      
+      if (response.ok && data.downloadUrl) {
+        window.open(data.downloadUrl, '_blank');
+      } else {
+        alert(data.error || "Download failed. Please contact support.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please check your connection and try again.");
+    } finally {
+      setDownloading(null);
+    }
+  };
 
   const filteredItems = purchasedItems.filter(item => 
     item.name.toLowerCase().includes(searchQuery.toLowerCase())

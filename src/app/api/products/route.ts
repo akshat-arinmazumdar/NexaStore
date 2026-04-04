@@ -50,6 +50,8 @@ export async function GET(request: Request) {
         images: true,
         isFeatured: true,
         isActive: true,
+        techStack: true,
+        features: true,
       }
     });
 

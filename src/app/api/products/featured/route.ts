@@ -31,6 +31,8 @@ export async function GET() {
         images: true,
         isFeatured: true,
         isActive: true,
+        techStack: true,
+        features: true,
       }
     });
 

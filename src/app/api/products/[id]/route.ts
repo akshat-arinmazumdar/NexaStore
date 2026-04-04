@@ -17,6 +17,26 @@ export async function GET(
           { id: params.id },
           { slug: params.id }
         ]
+      },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        category: true,
+        description: true,
+        longDesc: true,
+        price: true,
+        originalPrice: true,
+        rating: true,
+        totalReviews: true,
+        images: true,
+        isFeatured: true,
+        isActive: true,
+        techStack: true,
+        features: true,
+        whatYouGet: true,
+        demoUrl: true,
+        videoUrl: true,
       }
     })
     if (!product) {

@@ -26,7 +26,7 @@ export default function NewProductPage() {
     badge: "",
     demoUrl: "",
     images: [] as string[],
-    accessLink: "",
+    downloadUrl: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -151,10 +151,10 @@ export default function NewProductPage() {
 
           <div className="space-y-2 col-span-1 md:col-span-2">
             <label className="text-xs font-bold text-indigo-400 uppercase tracking-widest flex items-center gap-2">
-              📦 Secure Download / Access Link *
+              📦 Secure Download Link (Google Drive/GitHub) *
             </label>
-            <p className="text-[10px] text-slate-500 mb-2">This is the secret link (Google Drive, GitHub repo, etc) that the customer will receive ONLY AFTER a successful payment.</p>
-            <input required type="url" name="accessLink" value={(formData as any).accessLink || ""} onChange={handleChange} className="w-full bg-[#0F172A] border border-indigo-500/30 rounded-xl py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-indigo-500" placeholder="https://drive.google.com/..." />
+            <p className="text-[10px] text-slate-500 mb-2">This link will ONLY be shown after a successful payment in the customer dashboard.</p>
+            <input required type="url" name="downloadUrl" value={formData.downloadUrl} onChange={handleChange} className="w-full bg-[#0F172A] border border-indigo-500/30 rounded-xl py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-indigo-500" placeholder="https://drive.google.com/..." />
           </div>
 
           <div className="space-y-2 col-span-1 md:col-span-2">

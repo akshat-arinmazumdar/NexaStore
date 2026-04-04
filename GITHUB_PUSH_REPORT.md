@@ -1,37 +1,41 @@
 # GitHub Push Report
 
 ## Repository URL
-[https://github.com/__NexaStore__/nexastore](https://github.com/__NexaStore__/nexastore)
+[https://github.com/akshat-arinmazumdar/nexastore-market.git](https://github.com/akshat-arinmazumdar/nexastore-market.git)
 
-## Push Status: ✅ SUCCESS (Manually Verified by User)
+## Push Status: ✅ SUCCESS (Full Project + Review System)
 
-## Files Summary
-- **Total Files Counted:** 32,484
-- **Staged Files Status:** ✅ All project files successfully committed.
-- **`.env` Protected:** ✅ **Verified.** The `.env` file is NOT in the git history.
+## Recent Updates (Review System)
+- **Feature:** Full Amazon/Flipkart-style Review & Rating System.
+- **Components:** `ReviewSection.tsx`, `AdminReviewsPage.tsx`, updated `ProductCard.tsx`.
+- **API:** Verified purchase reviews with admin moderation (replies/deletions).
+- **Prisma Schema:** Updated `Review` model with administrative fields.
+- **Status:** ✅ Built and Synchronized to both repositories.
 
 ## Commit Details
-- **Commit Hash:** `7ebcd0c`
-- **Commit Message:** `🚀 NexaStore v1.0 — Production Ready`
+- **Latest Commit Message:** `feat: review and rating system with admin moderation`
+- **Latest Sync Hash:** `cebf93f` (NexaStore) / `aa0fc1e` (nexastore-market)
 - **Branch:** `main`
 
 ## Files Status (Verified locally)
 | File/Folder | Status |
 |-------------|--------|
+| `src/app/api/reviews/` | ✅ Created & Pushed |
+| `src/components/reviews/` | ✅ Created & Pushed |
+| `src/app/admin/reviews/` | ✅ Created & Pushed |
+| `prisma/schema.prisma` | ✅ Updated & Migrated |
 | `src/` | ✅ Staged & Committed |
-| `prisma/` | ✅ Staged & Committed |
 | `package.json` | ✅ Staged & Committed |
-| `README.md` | ✅ Staged & Committed |
 | `.gitignore` | ✅ Staged & Committed |
 | `.env` | ❌ **NOT IN HISTORY (Security Match)** |
 
-## Any Issues Found
-1. **`.gitignore` Update:** Updated to include `prisma/migrations/dev/` before staging to avoid bloating the production repo.
-2. **Authentication:** The final `git push` was completed manually by the user using their PAT, confirming successful repository connection.
+## Issues Handled
+1. **Prisma Schema Drift**: Fixed `adminReply` column mismatch by performing a clean `migrate dev` and regenerating the client after killing lingering node processes. ✅
+2. **Pathing Error**: Corrected `ProductCard` location for badge updates. ✅
 
 ## Next Step
 **Vercel Deployment:**
 1. Go to [https://vercel.com](https://vercel.com)
 2. Import the `nexastore` repository.
 3. Add the environment variables from your [LAUNCH_REPORT.md](file:///d:/Project/NexaStore/LAUNCH_REPORT.md).
-4. **Deploy!**
+4. **Deploy and monitor review moderation!**
