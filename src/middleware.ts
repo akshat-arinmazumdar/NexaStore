@@ -1,26 +1,28 @@
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
-import { getToken } from "next-auth/jwt"
+import { auth } from "@/auth";
 
-export async function middleware(request: NextRequest) {
-  const token = await getToken({ 
-    req: request,
-    secret: process.env.NEXTAUTH_SECRET 
-  })
-  const isAdminRoute = request.nextUrl.pathname.startsWith("/admin")
-  const isDashboardRoute = request.nextUrl.pathname.startsWith("/dashboard")
+export default auth((req) => {
+  const { nextUrl } = req;
+  const isLoggedIn = !!req.auth;
 
-  if (isDashboardRoute && !token) {
-    return NextResponse.redirect(new URL("/login", request.url))
+  const isAdminRoute = nextUrl.pathname.startsWith("/admin");
+  const isDashboardRoute = nextUrl.pathname.startsWith("/dashboard");
+
+  if (isAdminRoute) {
+    if (!isLoggedIn) {
+      return Response.redirect(new URL("/login", nextUrl));
+    }
+    if (req.auth?.user?.role !== "ADMIN") {
+      return Response.redirect(new URL("/", nextUrl));
+    }
   }
 
-  if (isAdminRoute && (!token || token.role !== "ADMIN")) {
-    return NextResponse.redirect(new URL("/", request.url))
+  if (isDashboardRoute && !isLoggedIn) {
+    return Response.redirect(new URL("/login", nextUrl));
   }
 
-  return NextResponse.next()
-}
+  return;
+});
 
 export const config = {
-  matcher: ["/admin/:path*", "/dashboard/:path*"]
-}
+  matcher: ["/admin/:path*", "/dashboard/:path*"],
+};

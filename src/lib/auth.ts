@@ -11,6 +11,7 @@ export const authOptions: NextAuthConfig = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
   pages: {
     signIn: "/login",
   },
@@ -59,21 +60,13 @@ export const authOptions: NextAuthConfig = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
         token.role = (user as any).role;
-        // Persist basic identity fields for the client session.
-        token.name = (user as any).name;
-        token.email = (user as any).email;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as any).id = token.id;
         (session.user as any).role = token.role;
-        // Keep name/email in sync for UI rendering (e.g. dashboard).
-        session.user.name = token.name as string;
-        session.user.email = token.email as string;
       }
       return session;
     },

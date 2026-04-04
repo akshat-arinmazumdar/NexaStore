@@ -19,6 +19,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
+import { auth } from "@/auth";
 
 async function getStats() {
   const [totalUsers, totalProducts, totalOrders, completedOrders] = await Promise.all([
@@ -58,6 +59,12 @@ async function getStats() {
 }
 
 export default async function AdminDashboardPage() {
+  const session = await auth();
+
+  if (session?.user?.role !== "ADMIN") {
+    return <div>Not authorized</div>;
+  }
+
   const stats = await getStats();
 
   const kpiStats = [

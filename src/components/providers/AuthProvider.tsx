@@ -11,7 +11,6 @@ export default function AuthProvider({
   // fast navigations (and to keep tests strict about zero console errors).
   return (
     <SessionProvider
-      session={null}
       refetchInterval={0}
       refetchOnWindowFocus={false}
     >
