@@ -11,7 +11,8 @@ import {
   Clock, 
   Download, 
   Package,
-  Code2
+  Code2,
+  Trash2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -84,6 +85,12 @@ const DashboardOverview = () => {
       alert("An error occurred. Please check your connection and try again.");
     } finally {
       setDownloading(null);
+    }
+  };
+
+  const handleRemove = (id: string) => {
+    if (window.confirm("Are you sure you want to remove this item from your dashboard view?")) {
+      setPurchasedItems(prev => prev.filter(item => item.id !== id));
     }
   };
 
@@ -210,6 +217,14 @@ const DashboardOverview = () => {
                               <Package className="w-4 h-4 text-red-400" /> Payment Failed
                            </div>
                         )}
+
+                        <button 
+                           onClick={() => handleRemove(item.id)}
+                           className="p-3 rounded-xl bg-red-500/5 text-red-500 hover:bg-red-500/10 border border-red-500/10 transition-all shrink-0"
+                           title="Remove from list"
+                        >
+                           <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                   </motion.div>
                 ))
