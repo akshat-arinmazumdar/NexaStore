@@ -4,7 +4,7 @@ export const revalidate = 0
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "@/lib/prisma";
 import { razorpay } from "@/lib/razorpay";
 
