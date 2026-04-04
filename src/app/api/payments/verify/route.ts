@@ -77,6 +77,7 @@ export async function POST(request: Request) {
       await sendEmail({
         to: session.user.email!,
         subject: "Order Confirmed! ✅",
+        text: `Hey ${session.user.name || "Customer"}! Your order ${order.id} for ₹${order.totalAmount} has been confirmed. Thank you for shopping with us!`,
         html: orderConfirmationEmail(order.id, productList, order.totalAmount, session.user.name || "Customer")
       });
 
@@ -84,6 +85,7 @@ export async function POST(request: Request) {
       await sendEmail({
         to: "pocketmoneystudents@gmail.com", // Admin Email
         subject: "🔔 New Sale on NexaStore!",
+        text: `New sale on NexaStore!\nOrder ID: ${order.id}\nCustomer: ${session.user.name || "Customer"}\nEmail: ${session.user.email!}\nTotal: ₹${order.totalAmount}`,
         html: adminNewOrderEmail(order.id, session.user.name || "Customer", session.user.email!, productList, order.totalAmount)
       });
     } catch (emailError) {

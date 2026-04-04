@@ -57,6 +57,7 @@ export async function POST(request: Request) {
           await sendEmail({
             to: order.user.email,
             subject: "Payment Failed — Please try again",
+            text: `Hi ${order.user.name || "Customer"}! Your payment for order ${order.id} has failed. Please try again or contact support if the issue persists.`,
             html: orderFailedEmail(order.id, order.user.name || "Customer")
           });
         } catch (emailError) {

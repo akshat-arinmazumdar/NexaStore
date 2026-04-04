@@ -47,6 +47,7 @@ export async function POST(req: Request) {
         await sendEmail({
           to: user.email!,
           subject: "Welcome to NexaStore! 🎉",
+          text: `Hi ${user.name || 'there'}! Welcome to NexaStore! We're thrilled to have you join us. Our mission is to provide you with a world-class shopping experience. Start exploring our latest collection at ${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/shop.`,
           html: welcomeEmail(user.name!)
         });
       } catch (emailError) {
