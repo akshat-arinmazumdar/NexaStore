@@ -5,16 +5,25 @@ import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/auth"
 import Razorpay from "razorpay"
 import { prisma } from "@/lib/prisma"
+import { cookies } from "next/headers"
 
 export async function POST(request: NextRequest) {
   try {
     console.log("=== CREATE ORDER START ===")
     
-    const session = await auth()
-    console.log("Session:", session?.user?.email)
+    const session = await auth();
+    console.log("SESSION DEBUG:", JSON.stringify(session));
+
+    if (!session) {
+      console.log("auth() failed, trying cookies check...");
+      const cookieStore = await cookies();
+      const sessionCookie = cookieStore.get("next-auth.session-token") || 
+                            cookieStore.get("__Secure-next-auth.session-token");
+      console.log("Session cookie exists:", !!sessionCookie);
+    }
     
     if (!session?.user?.email || !session?.user?.id) {
-      return NextResponse.json({ error: "Please login first" }, { status: 401 })
+      return NextResponse.json({ error: "Please login first - Unauthorized" }, { status: 401 })
     }
 
     const body = await request.json()
