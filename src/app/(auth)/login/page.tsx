@@ -194,30 +194,11 @@ const LoginPage = () => {
                      <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                   </button>
 
-                  <div className="relative py-4 flex items-center gap-4">
-                     <div className="h-[1px] flex-grow bg-white/5" />
-                     <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">or continue with</span>
-                     <div className="h-[1px] flex-grow bg-white/5" />
+                  <div className="pt-8 text-center text-[10px] font-bold text-slate-600 uppercase tracking-widest bg-white/5 p-4 rounded-2xl border border-white/5">
+                     Social logins are temporarily disabled
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                      <button 
-                        type="button"
-                        onClick={() => signIn("google", { callbackUrl: "/dashboard", redirect: true })}
-                        className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border border-white/5 hover:border-indigo-500/50 transition-all shadow-xl"
-                      >
-                         <Globe className="w-4 h-4 text-blue-400" /> Continue with Google
-                      </button>
-                      <button 
-                        type="button" 
-                        onClick={() => signIn("github", { callbackUrl: "/dashboard", redirect: true })} 
-                        className="btn-secondary !py-4 flex items-center justify-center gap-3 text-xs w-full bg-[#1E293B] border border-white/5 hover:border-slate-400 transition-all shadow-xl"
-                      >
-                         <Code2 className="w-4 h-4" /> Github
-                      </button>
-                   </div>
-
-                  <div className="pt-8 text-center">
+                  <div className="pt-4 text-center">
                      <p className="text-slate-500 text-sm">
                         Don&apos;t have an account? <Link href="/register" className="text-indigo-400 font-bold hover:text-white transition-all underline underline-offset-4">Join Hub</Link>
                      </p>
